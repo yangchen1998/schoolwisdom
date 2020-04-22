@@ -1,0 +1,47 @@
+<!--pages/notice/notice-detail/notice-detail.wxml-->
+<view style='height:60px;'>
+  <view class="navigationBar bg-white" style='height:60px; z-index:999; position:fixed;'>
+    <view class="navigationBarBack" bindtap='onBackPage'>
+      <text class="cuIcon-back"></text> 返回
+    </view>
+    <view class="navigationBarText">
+      通知
+    </view>
+  </view>
+</view>
+<view class='view_farther'>
+  <view class='view_title'>
+    <text class='text_title'>{{notice.title}}</text>
+  </view>
+  <view class='view_poster'>
+    <!-- <text class='view_poster_name'>{{notice.name}} </text>
+    <text class='view_poster_text'> 发布于 </text> -->
+    <text class='view_poster_date'> {{notice.date}}</text>
+  </view>
+  <view class='view_poster'>
+    <text class='view_poster_name'>通知对象范围：{{notice.scope1}} </text>
+    <!-- <view wx:for="{{notice.scope2}}" wx:key=""> -->
+   <text wx:for="{{notice.scope2}}" wx:key="" class='view_poster_name'> {{item}}</text>
+  <!-- </view> -->
+  </view>
+  <view class='view_notice_detail'>
+    {{notice.detail}}
+  </view>
+  <block wx:for="{{notice.imgid}}" wx:for-item='item' wx:key=''>
+      <view catchtap='onimg' data-img='{{item}}'>
+        <image src='{{item}}' mode='aspectFit' />
+      </view>
+    </block>
+  <view wx:if="{{pdd == true}}" style='margin-top:30px;'>
+    <button bindtap='backtoindex'>
+      <view class='view_button'>
+        <view>
+          返回主页
+        </view>
+        <view class='button_image_view'>
+          <image class='button_image' src='/image/goto.png'></image>
+        </view>
+      </view>
+    </button>
+  </view>
+  </view>

@@ -1,0 +1,41 @@
+<!--miniprogram/pages/count/rule.wxml-->
+<view style='height:60px; margin:0;'>
+  <view class="navigationBar bg-white" style='height:60px; z-index:999; position:fixed;'>
+    <view class="navigationBarBack" bindtap="onBackPage">
+      <text class="cuIcon-back"></text> 返回
+    </view>
+    <view class="navigationBarText text-cut">
+      本科生学分绩点实施细则
+    </view>
+  </view>
+</view>
+<view style="margin: 0 30rpx 30rpx 30rpx;">
+  <view class="text-center" style="width:690rpx;">
+    <text class="text-bold text-center">东北大学本科生学分绩点实施细则（东大教字〔2018〕106号）</text>
+  </view>
+  <view class="text-left text-bold" style="width:690rpx;">
+    <text class="text-bold" style="width:690rpx;" decode="{{true}}"> \n 一、学分绩点 \n &emsp;&emsp;学生在取得某一门课程学分的同时，也取得了相应的学分绩点。学分绩点作为反映学生学习质量的一种统计制度，既是学生学习量和质的双重相关的量化指标，也是反映学生学习状况的综合指标。学分绩点制度是从课程学分、课程成绩、课程考核次数等多方面、动态地反映学生状态和质量的一项教学管理制度。 </text>
+    <text class="text-bold">
+  二、学分绩点计算 \n </text>
+    <text class="text-bold" decode="{{true}}">&emsp;（一）课程单次学分绩点计算公式： </text>
+    <image src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/课程单次GPA.png" bindtap="onImg" data-id="0"></image>
+    <text decode="{{true}}"> \n &emsp;&emsp;式中 Y</text>
+    <text class="text-sm">ij</text>为 i 课程第j次考核的学分绩点，结果保留4位小数；X
+    <text class="text-sm">i </text>为 i 课程百分制成绩。
+    <text decode="{{true}}"> \n &emsp; 计算办法如下： \n  &emsp;&emsp;1. i 课程的成绩记载方式为百分制，100分折算为5 个绩点，以此类推到60分折算为1个绩点，60分以下绩点为0； \n  &emsp;&emsp;2. i 课程的成绩记载方式为五级分制（优秀、良好、中等、及格、不及格），其绩点分别对应百分制成绩95分、85分、75分、65分、0分所折算的绩点。 \n  &emsp;&emsp;3. i 课程的成绩记载方式为两级分制（合格、不合格），其绩点分别对应百分制的80分、0分所折算的绩点。
+  <text class="text-bold" decode="{{true}}">&emsp;（二） 课程平均学分绩点：GPA</text>
+    <text class="text-sm">i </text>(General Point Average)的计算公式： </text>
+    <image src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/课程平均GPA.png" bindtap="onImg" data-id="1"></image>
+    <text decode="{{true}}"> \n &emsp;式中 Z<text class="text-sm">ij</text>是 i 课程第 j 次的学分； \n 
+    K<text class="text-sm">i</text>为参加 i 课程的考核次数。</text>
+    <text class="text-bold" decode="{{true}}"> \n &emsp;（三）总平均学分绩点GPA<text class="text-sm">总</text>的计算公式： </text>
+    <image src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/总GPA.png" bindtap="onImg" data-id="2"></image>
+    <text decode="{{true}}"> \n &emsp;式中 n 为全部考核课程门数。</text>
+    <text decode="{{true}}"> \n 三、本实施细则适用于2016级及以后年级和江河建筑学院2015级本科生学分绩点的计算，自2018-2019学年春季学期起施行，由教务处负责解释；2019届本科毕业生学分绩点的计算，仍按原《东北大学本科生学分绩点实施细则》(东大教字〔2017〕50号)的有关规定执行。\n  \n 
+  </text>
+  </view>
+  <view class="tetx-gray text-sm text-cut bg-white">
+    转载自：
+    <text class="text-blue text-sm" bindtap="onUrl">http://aao.neu.edu.cn/2019/0318/c2340a86970/page.htm</text>
+  </view>
+</view>

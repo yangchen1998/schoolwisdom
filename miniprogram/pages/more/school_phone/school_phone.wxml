@@ -1,0 +1,36 @@
+<!--miniprogram/pages/more/school_phone/school_phone.wxml-->
+<!-- <import src='/template/swiper/swiper.wxml' /> -->
+<import src='/template/navigationBar/navigationBar.wxml' />
+<view>
+  <template is='navigationBar' data='{{navigationBarText}}' />
+</view>
+ <!--    <template is='swiper' /> -->
+<view class="VerticalBox">
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx)">
+    <view class="cu-item {{index==TabCur?'text-green cur':''}}" style='margin:0;font-size:small;width:100px;height:40px;' wx:for="{{list}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+      {{item.name}}
+    </view>
+  </scroll-view>
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(118vh - 375rpx)" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
+    <view class="padding-top padding-lr" wx:for="{{list}}" wx:key id="main-{{index}}">
+      <view class='cu-bar solid-bottom bg-white'>
+        <view class='action'>
+          <text class='cuIcon-title text-green'></text>{{item.name}} </view>
+      </view>
+      <view class="cu-list menu-avatar">
+        <block wx:for="{{item.detail}}" wx:key>
+          <view class="cu-item">
+          <view class="cu-avatar radius lg" style="background-image:url({{item.avatar}});"></view>
+            <view class="content" style='width:250rpx;'>
+              <view class="text-grey">{{item.name}}</view>
+              <view class="text-black text-sm flex">
+								<text class="text-cut">{{item.phone}}</text>
+              </view>
+            </view>
+            <view class='padding-sm' style='width:100rpx;height:100rpx;' catchtap='onPhone' data-phone='{{item.phone}}'><image style='width:80rpx;height:80rpx;' mode='widthFix' src='/image/phone.png'></image></view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </scroll-view>
+  </view>

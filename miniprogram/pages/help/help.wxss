@@ -1,0 +1,16 @@
+/* miniprogram/help/help.wxss */
+
+page {
+  background-color: white;
+}
+
+.video {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.image {
+  margin: 10rpx;
+  width: 730rpx;
+  height: 700px;
+}

@@ -1,0 +1,86 @@
+/**index.wxss**/
+@import '/template/navigation/navigation.wxss';
+@import '/template/swiper/swiper.wxss';
+
+.post-container {
+  display: flex;
+  flex-direction: row;
+  margin: 3px auto;
+  width: 740rpx;
+  border-radius: 10px;
+  height: 30px;
+  background-Color: #F5F5F5;
+}
+.more {
+  display: flex;
+  flex-direction: row;
+}
+
+.section {
+  flex: 4;
+  font-size: smaller;
+  color: #1E90FF;
+  height: 15px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 3px;
+}
+
+.postdate {
+  font-size: small;
+  margin-left: 10rpx;
+  margin-top: 3px;
+}
+.notice {
+  margin-left: 10rpx;
+   margin-bottom: 3px;
+  color: black;
+}
+
+.horizon1 {
+  height: 1px;
+  background-color: #e5e5e5be;
+  vertical-align: middle;
+  position: relative;
+  margin-right: 5rpx;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+  background-size: cover;
+  background-color: rgb(255, 255, 255);
+}
+
+.userinfo-nickname {
+  font-size: small;
+  color: rgb(207, 197, 197);
+}
+.view_farther {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20rpx;
+  height: 1000rpx;
+}
+.height1{
+  height: 50px;
+}
+.post-discoverer-date {
+  flex: 1;
+  margin-top: 5rpx;
+  margin-bottom: 5px;
+  margin-left: 10rpx;
+  font-size: smaller;
+}
+.post-title{
+  margin-top: 5px;
+  flex: 4;
+}

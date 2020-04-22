@@ -1,0 +1,23 @@
+/* miniprogram/pages/carpool/startCarpool.wxss */
+
+/* Page {
+  background-color: white;
+} */
+
+.radio-group {
+  border-bottom: 1px solid #ddd;
+}
+
+.radio {
+  display: block;
+  border-top: 1px solid #ddd;
+  padding: 5px;
+}
+
+.myformgroup {
+  padding: 1rpx 30rpx;
+  display: flex;
+  align-items: center;
+  min-height: 80rpx;
+  justify-content: space-between;
+}

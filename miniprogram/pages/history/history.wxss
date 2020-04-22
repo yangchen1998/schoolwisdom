@@ -1,0 +1,3 @@
+/* miniprogram/pages/history/history.wxss */
+@import '/template/history-template/history-template.wxss';
+@import '/pages/message/message.wxss';

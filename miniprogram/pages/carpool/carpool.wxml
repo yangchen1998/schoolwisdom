@@ -1,0 +1,84 @@
+<!--miniprogram/pages/carpool/carpool.wxml-->
+<view style='height:90px;'>
+  <view class="navigationBar bg-white" style='height:64px; z-index:999; position:fixed;'>
+    <view class="navigationBarBack" bindtap='onBackPage'>
+      <text class="cuIcon-back"></text> 返回
+    </view>
+    <view class="navigationBarText">
+      出行组队(限认证用户)
+    </view>
+  </view>
+  <view class="mybar-sm" style='margin-top:60px; height:28px; z-index:999; position:fixed;width: 750rpx; background-color: white;'>
+    <view class="mynav {{campus ? 'text-blue' :''}}" bindtap="onCampus">{{campus ? campus :'校区'}}
+      <text class="cuIcon-{{choose == 'campus' ? 'triangleupfill': 'triangledownfill'}} lg text-gray"></text>
+    </view>
+    <view class="mynav {{date ? 'text-blue' :''}}" bindtap="onDate">{{date ? date :'日期'}}
+      <text class="cuIcon-{{choose == 'date' ? 'triangleupfill': 'triangledownfill'}} lg text-gray" hidden="{{date}}"></text>
+    </view>
+    <view class="mynav text-cut {{destination ? 'text-blue' :''}}" bindtap="onDestination">{{destination ? destination :'目的地'}}
+      <text class="cuIcon-{{choose == 'destination' ? 'triangleupfill': 'triangledownfill'}} lg text-gray"></text>
+    </view>
+    <view class="mynav text-cut {{origin ? 'text-blue' :''}}" bindtap="onOrigin">{{origin ? origin :'始发地'}}
+      <text class="cuIcon-{{choose == 'origin' ? 'triangleupfill': 'triangledownfill'}} lg text-gray"></text>
+    </view>
+  </view>
+  <view wx:if="{{choose}}" class="padding-left text-bold text-bold solid-bottom" style='margin-top:88px; z-index:999; position:fixed;width: 750rpx; background-color: white;'>
+    <view data-name="{{item}}" catchtap="onChooseAll" class="margin-top-sm;margin-bottom-sm;text-gray">全部</view>
+    <block wx:for="{{chooseList}}" wx:key="{{index}}">
+      <view data-name="{{item}}" catchtap="onChoose" class="margin-top-sm;margin-bottom-sm;">{{item}}</view>
+    </block>
+  </view>
+</view>
+<block wx:for="{{carpool}}" wx:key="{{index}}">
+  <view class="padding bg-white margin-top-xs shadow-warp" bindtap='onCarpoolView' data-id="{{index}}" hidden="{{item.tag_campus == 1 || item.tag_date == 1 || item.tag_origin == 1 || item.tag_destination == 1 || item.end_tag == 1}}">
+    <view class="cu-bar">
+      <view class="text-bold">{{item.origin}}</view>
+      <image src="/image/go.png" style="height:70px; width:70px;" mode="aspectFit"></image>
+      <view class="text-bold">{{item.destination}}</view>
+    </view>
+    <view class="mybar">
+      <view class="text-balck">出发日期：{{item.date}} </view>
+      <view class="text-balck">出发时间：{{item.time}}</view>
+    </view>
+    <view class="mybar-sm" style="min-height: 0; margin-top:5px;">
+      <view class="text-sm">发起人：
+        <text class="text-blue">{{item.creator.name}} </text>
+      </view>
+      <view class="text-sm text-gray text-right">目标人数：
+        <text class="text-black">{{item.people_nums}} </text> 人
+        <text class="margin-left">已有</text>
+        <text class="text-blue"> {{item.sharing.length+1}} </text> 人加入
+      </view>
+    </view>
+  </view>
+</block>
+<view class="foot-h-5"></view> 
+<view wx:if="{{tag_carpool =='undo'}}" class="cu-bar tabbar myfoot margin-bottom">
+  <button style="width: 100rpx;"></button>
+  <button class="bg-orange round" style="width: 490rpx;" catchtap='startCarpool'>发起组队</button>
+  <view class="round" style="width: 100rpx;">
+    <image hidden="{{backtop == 0}}" style="width: 100rpx;height: 100rpx;" src='/image/top.png' bindtap='onBacktop'></image>
+  </view>
+</view>
+<view wx:if="{{tag_carpool=='doing'}}" class="cu-bar tabbar myfoot margin-bottom">
+  <button style="width: 100rpx;"></button>
+  <button class=" bg-orange round" style="width: 490rpx;" catchtap='myCarpool'>我的组队</button>
+  <view class="round" style="width: 100rpx;">
+    <image hidden="{{backtop == 0}}" style="width: 100rpx;height: 100rpx;" src='/image/top.png' bindtap='onBacktop'></image>
+  </view>
+</view>
+<!-- <view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-orange"></text> 数字完成
+  </view>
+  <view class="action">
+    <button class="cu-btn bg-green shadow" bindtap="numSteps">下一步</button>
+  </view>
+</view>
+<view class="bg-white padding">
+  <view class="cu-steps">
+    <view class="cu-item {{index2>num?'':'text-blue'}}" wx:for="{{numList}}" wx:key wx:for-index='index2' wx:for-item='status'>
+      <text class="num" data-index="{{index2 + 1}}"></text> {{status.name}}
+    </view>
+  </view>
+</view> -->

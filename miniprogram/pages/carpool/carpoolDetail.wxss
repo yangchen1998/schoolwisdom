@@ -1,0 +1,23 @@
+/* miniprogram/pages/carpool/carpoolDetail.wxss */
+
+.adjustnavBar {
+  height: 60px;
+  z-index: 999;
+  position: fixed;
+  padding-right: 200rpx;
+}
+
+.adjustnav {
+  margin-top: 23px;
+  font-size: 18px;
+  width: 230rpx;
+}
+
+.adjustnavmd {
+  margin-top: 23px;
+  text-align: center;
+  width: 90rpx;
+}
+.adj-cardtext {
+  margin-left: 480rpx;
+}

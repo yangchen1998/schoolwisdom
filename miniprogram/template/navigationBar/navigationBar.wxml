@@ -1,0 +1,10 @@
+<template name='navigationBar'>
+  <view class="navigationBar bg-white">
+    <view class="navigationBarBack" bindtap="onBackPage">
+      <text class="cuIcon-back"></text> 返回
+    </view>
+    <view class="navigationBarText">
+      {{navigationBarText}}
+    </view>
+  </view>
+</template>

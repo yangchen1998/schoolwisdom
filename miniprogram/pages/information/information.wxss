@@ -1,0 +1,49 @@
+@import '/pages/message/message.wxss';
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+  background-size: cover;
+  background-color: rgb(255, 255, 255);
+}
+
+.userinfo-nickname {
+  font-size: small;
+  color: rgb(207, 197, 197);
+}
+
+.userinfo-information {
+  background-color: rgba(255, 255, 255, 0.634);
+  margin: 1.5px 10rpx;
+  display: flex;
+  flex-direction: row;
+  height: 80rpx;
+  align-items: center;
+  border-radius: 5%;
+}
+
+.information-text {
+  color: rgba(0, 0, 0, 0.814);
+}
+
+.clearstorage {
+  font-size: small;
+  align-items: center;
+  height: 30px;
+  margin: 30px;
+}
+
+.section {
+  font-size: smaller;
+  color: #aaa;
+  height: 15px;
+  margin: 20px 0 5px 20px;
+}

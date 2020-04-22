@@ -1,0 +1,40 @@
+<!--pages/lostAndFound/help/help.wxml-->
+<view>
+  <view class='margin1'>
+    <view>类型</view>
+    <radio-group>
+      <radio wx:for-items="{{item}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+        <text>{{item.value}}</text>
+      </radio>
+    </radio-group>
+
+    <view>地点</view>
+    <view class="checkbox">
+      <checkbox-group bindchange="getCheckbox">
+        <label wx:for="{{checkboxs}}" wx:key="name">
+          <checkbox value="{{item.value}}"> </checkbox>
+          <text>{{item.value}}</text>
+        </label>
+      </checkbox-group>
+    </view>
+
+    <view> 联系方式</view>
+    <view class="margin3">
+      <input type='number'></input>
+    </view>
+    <view>详细信息</view>
+    <view class="textarea1">
+      <textarea />
+    </view>
+  </view>
+
+  <view>
+    <button class='margin21' bindtap='onTap1'>确认</button>
+    <button class='margin22' bindtap='onTap2'>取消</button>
+  </view>
+  <view class='footer'>
+    <view class='footer_text'>
+    
+    </view>
+  </view>
+</view>

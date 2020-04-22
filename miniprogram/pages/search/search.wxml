@@ -1,0 +1,87 @@
+<!--miniprogram/pages/search/search.wxml-->
+<import src='/template/navigationBar/navigationBar.wxml' />
+<view style='height:64px;'>
+  <view class="navigationBar bg-white" style='height:64px; z-index:999; position:fixed;'>
+    <view class="navigationBarBack" bindtap='onBackPage'>
+      <text class="cuIcon-back"></text> 返回
+    </view>
+    <view class="navigationBarText" bindtap="cancelSearch">
+      搜索
+    </view>
+  </view>
+</view>
+<!--搜索框-->
+<view class="cu-bar bg-white" style="height:55px; z-index:999; position:fixed; width:100%;">
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input name="input" type="text" placeholder="请输入搜索内容" value="{{searchtext ? searchtext : ''}}" confirm-type="search" bindinput="onInputsearch" bindconfirm="onSearch" bindfocus='trySearch' bindkeyboardheightchange="onKeyboard"></input>
+    <text wx:if="{{searchtext}}" class="cuIcon-roundclosefill text-gray" style="width: 20px; font-size: 34rpx;" bindtap="onClearsearch"></text>
+  </view>
+  <view class="action">
+    <button class="cu-btn bg-green shadow-blur round" bindtap="onSearch">搜索</button>
+  </view>
+</view>
+
+<!--提示框-->
+<view class='bg-white' style="margin-top:55px;" wx:if="{{trysearch}}">
+  <block wx:for='{{searchList}}' wx:for-item='item' wx:key='time'>
+    <view wx:if="{{item.isShow}}" class="cu-form-group" style='min-height:40px;' data-name='{{item.name}}' bindtap='onSearchTip'>
+      <view class="title text-black">#{{item.name}}</view>
+    </view>
+  </block>
+</view>
+<view style="height:40px;" bindtap="cancelSearch" wx:if="{{trysearch}}"></view>
+<!--搜索结果展示-->
+<scroll-view style="margin-top:{{trysearch?'':'55px'}};">
+  <view wx:for='{{result}}' wx:for-item='item' wx:for-index='index' wx:key='time'>
+    <view wx:if="{{item.class1 != '通知' }}" class="cu-card1 case shadow shadow-lg bg-white" data-post='{{item}}' data-id='{{index}}' bindtap='onPostTap'>
+      <view class="cu-item" style='margin:0 20rpx 5rpx 20rpx;'>
+        <view class="text-left padding-xs flex">
+          <view class="text-cut text-lg  padding-top-xs flex-treble">{{item.title}}</view>
+          <view class="text-gray text-right text-sm padding-top-xs">{{item.class1}}</view>
+        </view>
+        <view class="cu-list menu-avatar">
+          <view class='post-discoverer-date'>
+            <image class='post-discoverer' src="{{item.postimgid}}" lazy-load='ture'></image>
+            <view class="text-sm date_l text-gray">{{item.nickName}}</view>
+          </view>
+        </view>
+        <view>
+          <text class="textarea-cut padding-left-xs text-lg text-df">{{item.detail}}</text>
+        </view>
+        <view class='image margin-top-sm' data-listid='{{index}}' catchtap='onPostTap'>
+          <image wx:if="{{item.imgid.length == 1 }}" data-imglistid='{{index}}' data-imgid='{{item.imgid[0]}}' src="{{item.imgid}}" lazy-load='ture' mode='aspectFill' catchtap='onPostimg' class="one-image"></image>
+          <view wx:if="{{item.imgid.length == 2 }}" class="grid">
+            <view style='width:350rpx; height:350rpx;' wx:for="{{item.imgid}}" wx:key='' wx:for-index='index2' wx:for-item="images">
+              <image class='bg-img' data-imglistid='{{index}}' data-imgid='{{images}}' src="{{images}}" lazy-load='ture' mode='scaleToFill' catchtap='onPostimg' class="two-image"></image>
+            </view>
+          </view>
+          <view wx:if="{{item.imgid.length >= 3 }}" class="grid">
+            <view style='width:235rpx; height:235rpx;' wx:for="{{item.imgid}}" wx:for-index='index2' wx:key='' wx:for-item="images">
+              <image class='bg-img' data-imglistid='{{index}}' data-imgid='{{images}}' src="{{images}}" lazy-load='ture' mode='scaleToFill' catchtap='onPostimg' class="more-image"></image>
+            </view>
+          </view>
+          <view class="text-gray text-sm text-right padding-xs flex" data-listid='{{index}}' catchtap='onPostTap'>
+            <view class='postd flex-treble'>
+              <text class='post-date'>{{item.date}}</text>
+              <view class='post-location'> {{item.location0}}{{item.location1}}{{item.location2}}</view>
+            </view>
+            <text class="cuIcon-attentionfill margin-lr-xs"></text> {{item.viewers}}
+            <text class="cuIcon-messagefill margin-lr-xs"></text> {{item.comments[0]}}
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{item.class1 == '通知' }}" class="cu-card1 case shadow shadow-lg bg-white" data-post='{{item}}' data-id='{{index}}'>
+      <view class="cu-item" style='height:50px; margin-top:20rpx;margin-bottom:20rpx;'>
+        <view class="text-left padding-xs flex" data-listid='{{index}}' catchtap='onPostTap'>
+          <view class="text-cut text-lg  padding-top-xs flex-treble text-bold">{{item.title}}</view>
+          <view class="text-blue text-right text-md padding-top-xs ">系统通知</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<!--无搜索结果时-->

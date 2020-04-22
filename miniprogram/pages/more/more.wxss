@@ -1,0 +1,25 @@
+/* miniprogram/more/more.wxss */
+
+.feature {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature1 {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.feature2 {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  padding: 30rpx;
+  border-radius: 12rpx;
+  width: 45%;
+  margin: 0 2.5% 40rpx;
+  position: relative;
+  background-color: #ffffff;
+  justify-content: center;
+}

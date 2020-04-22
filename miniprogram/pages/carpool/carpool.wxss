@@ -1,0 +1,32 @@
+/* miniprogram/pages/carpool/carpool.wxss */
+
+.mynav {
+  background-color: white;
+  width: 187.5rpx;
+  text-align: center;
+  font-weight: 600;
+}
+.myfoot {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 1024;
+}
+
+.mybtn {
+  position: relative;
+  border: 0rpx;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  height: 50px;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  overflow: visible;
+  margin-left: initial;
+  transform: translate(0rpx, 0rpx);
+}

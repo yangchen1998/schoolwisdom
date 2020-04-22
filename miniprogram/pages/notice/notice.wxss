@@ -1,0 +1,39 @@
+/* pages/notice/notice.wxss */
+@import '/pages/box/box.wxss';
+.margin2 {
+  background-color: rgb(255, 255, 255);
+  border-width: medium;
+  border-color: rgb(194, 199, 204);
+  display: flex;
+  flex-direction: row;
+  border-radius: 5%;
+  height: 30px;
+  line-height: 32px;
+  width: 100%;
+
+}
+.sliderIndex {
+content:" ";
+left:0;
+bottom:0;
+width:200rpx;
+height:3px;
+background-color:#0087fd;
+}
+.navbar_item {
+display:block;
+flex:1;
+text-align:center;
+}
+.post-container {
+  border-radius: 2%;
+  margin-top: 1.5px;
+  width: 100%;
+}
+.postdate {
+  font-size: small;
+  margin-left: 10rpx;
+}
+.notice {
+  margin-left: 10rpx;
+}

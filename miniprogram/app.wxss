@@ -1,0 +1,30 @@
+/**app.wxss**/
+
+@import "colorui/main.wxss";
+@import "colorui/icon.wxss";
+@import "colorui/animation.wxss";
+
+page {
+  font-size: medium;
+  background-color: 	#E8E8E8;
+}
+
+.view_farther {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20rpx;
+}
+
+.footer {
+  margin-bottom: 100rpx;
+  color: #999;
+  font-size: 28rpx;
+  text-align: center;
+  height: 50rpx;
+}
+
+.footer_text {
+  padding: 0.34em;
+  font-size: 25rpx;
+  margin-top: 40px;
+}

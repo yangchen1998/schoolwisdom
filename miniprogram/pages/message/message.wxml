@@ -1,0 +1,138 @@
+<!--pages/messsge/message.wxml-->
+<view style='height:60px;'>
+  <view class="navigationBar bg-white" style='height:60px; z-index:999; position:fixed;'>
+    <view class="navigationBarBack" bindtap='onBackPage'>
+      <text class="cuIcon-back"></text> 返回
+    </view>
+    <view class="navigationBarText">
+      我的通知
+    </view>
+  </view>
+</view>
+
+<!-- 认证时才会渲染-->
+<scroll-view>
+  <view class="cu-bar bg-white solid-bottom flex">
+    <view class="action"> 最新通知
+    </view>
+    <view class="text-right padding-right-lg" bindtap='moreNotice'>
+      <text class="text-sm text-gray padding-right-xs">更多通知</text>
+      <text class="cuIcon-roundcheck lg text-gray"></text>
+    </view>
+  </view>
+  <view class="cu-list menu-avatar">
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{message}}" wx:key="{{index}}" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+      <image class="cu-avatar round lg" mode='scaleToFill' src='{{item.postimgid}}' data-id="{{index}}" bindtap='onMassege'></image>
+      <view class="content" data-id="{{index}}" bindtap='onMassege'>
+        <view wx:if="{{item.class1=='问题'}}" class="text-gray text-xs" style='font-size:small'>
+          <text class='text-cut' style='width:200rpx'>{{item.nickName}}</text>评论了你的动态</view>
+        <view wx:if="{{item.class1=='通知'}}" class="text-gray text-xs" style='font-size:small'>系统通知</view>
+        <view wx:if="{{item.class1=='招领'}}" class="text-gray text-xs" style='font-size:small'>失物招领</view>
+        <view wx:if="{{item.class1!='招领'}}" class="text text-cut">{{item.title}}</view>
+        <view wx:if="{{item.class1=='招领'}}" class="text-sm text-cut ">
+          <text class='text-cut' style='width:80rpx'>{{item.nickName}}</text>捡到了您的校园卡</view>
+      </view>
+      <view style='width:120rpx; text-align:center;' data-id="{{index}}" bindtap='onMassege'>
+        <view class="text-grey text-sm ">{{item.time}}</view>
+      </view>
+      <view class="move" data-id="{{index}}" data-viewid="{{item._id}}" bindtap='onRemove'>
+        <view class="bg-grey">删除</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<!-- 管理员才会渲染-->
+<view wx:if="{{user.identity=='administrator'}}" hidden="{{password}}">
+  账号：
+  <input bindinput="administrator" disabled="{{user.identity!='administrator'}}"></input>
+  密码：
+  <input bindinput="password" disabled="{{user.identity!='administrator'}}"></input>
+  <button bindtap="log" disabled="{{user.identity!='administrator'}}">确认</button>
+</view>
+<scroll-view wx:if="{{user.identity=='administrator'}}" hidden="{{!password}}">
+  <block wx:for='{{repair}}' wx:for-item='item' wx:key=''>
+    <view class='{{read}}' catchtap='onTaprepairview' data-certifyview='{{item}}'>
+      <view class='message_text bg-blue'>
+        <text class='message_content'>时间：{{item.time}}</text>
+      </view>
+      <view class='message_text'>
+        <text class='message_content'>姓名：{{item.name}}</text>
+      </view>
+      <view class='message_text'>
+        <text class='message_content'>类型：{{item.type}}</text>
+      </view>
+      <view class='message_text'>
+        <text class='message_content'>详情：{{item.detail}}</text>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+
+<scroll-view wx:if="{{user.identity=='administrator'}}" hidden="{{!password}}">
+  <block wx:for='{{report}}' wx:for-item='item' wx:key=''>
+    <view class='{{read}}' catchtap='onTapreportview' data-reportview='{{item}}'>
+      <view class='message_text bg-red'>
+        <text class='message_content'>时间：{{item.time}}</text>
+      </view>
+      <view class='message_text'>
+        <text class='message_content'>姓名：{{item.name}}</text>
+      </view>
+      <view class='message_text'>
+        <text class='message_content'>原因：{{item.reason}}</text>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+
+<scroll-view wx:if="{{user.identity=='administrator'}}" hidden="{{!password}}">
+  <view class="cu-list menu-avatar">
+    <block wx:for='{{certifying}}' wx:for-item='item' wx:key=''>
+      <view class='{{read}}' catchtap='onTapcertifyview' data-certifyview='{{item}}'>
+        <view class='message_text'>
+          <text class='message_content'>姓名：{{item.name}}</text>
+        </view>
+        <view class='message_text'>
+          <text class='message_content'>学号：{{item.student_id}}</text>
+        </view>
+        <view class='message_text'>
+          <text class='message_content'>校区：{{item.campus}}</text>
+        </view>
+        <view class='message_text'>
+          <text class='message_content'>学院：{{item.college}}</text>
+        </view>
+        <view class='message_text'>
+          <text class='message_content'>专业：{{item.major}}</text>
+        </view>
+        <view class="cu-card case no-card" data-path='{{item.path}}' bindtap="ViewImage">
+          <view class="cu-item shadow">
+            <view class="image">
+              <image src="{{item.path}}" mode="widthFix"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='button_view'>
+        <button class='finish_button' type='warn' size='mini' style='margin: 0 6px;' catchtap='onTapcertifyfail' disabled="{{user.identity!='administrator'}}" data-certifyfail='{{item._id}}' data-id='{{index}}'>驳回</button>
+        <button class='finish_button' type='primary' size='mini' style='margin: 0 6px;' catchtap='onTapcertifypass' disabled="{{user.identity!='administrator'}}" data-certifypass='{{item._id}}' data-id='{{index}}'>通过</button>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+
+
+<!-- 没有认证时提示前往认证的弹窗-->
+<view class="cu-modal {{modalName=='Image'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="bg-img" style="background-image: url('http://m.qpic.cn/psb?/V1440qhp31sLv2/Y*7gILX4gwLyW7f4bdStyWRApTecvksrgDS2R4UGAfk!/b/dIQAAAAAAAAA&bo=yQHXAAAAAAADFy0!&rf=viewer_4');height:200px;">
+      <view class="cu-bar justify-end text-white">
+        <view class="action" bindtap="hideModal1">
+          <text class="cuIcon-close "></text>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  solid-left" style='height:55px;' bindtap="hideModal21">前往认证</view>
+      <view class="action margin-0 flex-sub  solid-left" style='height:55px;' bindtap="hideModal22">我知道了</view>
+    </view>
+  </view>
+</view>

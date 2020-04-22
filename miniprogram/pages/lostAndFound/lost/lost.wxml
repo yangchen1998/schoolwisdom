@@ -1,0 +1,95 @@
+<import src='/template/post-item-template/post-item-template.wxml' />
+
+<view style='margin: 0 20rpx;'>
+
+  <view class='margin2'>
+
+    <block wx:for="{{tabs}}" wx:key="*this">
+      <view id="{{index}}" class="weui-navbar__item" bindtap="tabClick">
+        <view class='margin22'>{{item}}</view>
+      </view>
+    </block>
+  </view>
+  <view class='slider'>
+    <view class="sliderIndex" style='transform: translateX({{sliderOffset}}px);'></view>
+  </view>
+
+
+
+  <view class='search'>
+    <input class='search_text' bindinput='oninput'></input>
+    <icon type="search" size="20" bindtap='onsearch'></icon>
+  </view>
+</view>
+<view class='view_farther'>
+
+
+
+
+
+  <view class="">
+    <view class="content" hidden="{{activeIndex != 0}}">
+      <block wx:for='{{postList}}' wx:for-item='item' wx:key='_id'>
+        <view catchtap='onPostTap' data-post='{{item}}'>
+          <template is='postItem' data='{{...item}}' />
+        </view>
+      </block>
+    </view>
+    <view class="content" hidden="{{activeIndex != 1}}">
+      <block wx:for='{{postList}}' wx:for-item='item' wx:key='_id'>
+        <view catchtap='onPostTap' data-post='{{item}}'>
+          <template is='postItem' data='{{...item}}' />
+        </view>
+      </block>
+    </view>
+    <view class="content" hidden="{{activeIndex != 2}}">
+      <block wx:for='{{postList}}' wx:for-item='item' wx:key='_id'>
+        <view catchtap='onPostTap' data-post='{{item}}'>
+          <template is='postItem' data='{{...item}}' />
+        </view>
+      </block>
+    </view>
+    <view class="content" hidden="{{activeIndex != 3}}">
+      <block wx:for='{{postList}}' wx:for-item='item' wx:key='_id'>
+        <view catchtap='onPostTap' data-post='{{item}}'>
+          <template is='postItem' data='{{...item}}' />
+        </view>
+      </block>
+    </view>
+    <view class="content" hidden="{{activeIndex != 4}}">
+      <block wx:for='{{postList}}' wx:for-item='item' wx:key='_id'>
+        <view catchtap='onPostTap' data-post='{{item}}'>
+          <template is='postItem' data='{{...item}}' />
+        </view>
+      </block>
+    </view>
+    <view class="content" hidden="{{activeIndex != 5}}">
+      <block wx:for='{{postList}}' wx:for-item='item' wx:key='_id'>
+        <view catchtap='onPostTap' data-post='{{item}}'>
+          <template is='postItem' data='{{...item}}' />
+        </view>
+      </block>
+    </view>
+    <view class="content" hidden="{{activeIndex != 6}}">
+      <block wx:for='{{postList}}' wx:for-item='item' wx:key='_id'>
+        <view catchtap='onPostTap' data-post='{{item}}'>
+          <template is='postItem' data='{{...item}}' />
+        </view>
+      </block>
+    </view>
+    <view class="content" hidden="{{activeIndex != 7}}">
+      <block wx:for='{{postList}}' wx:for-item='item' wx:key='_id'>
+        <view catchtap='onPostTap' data-post='{{item}}'>
+          <template is='postItem' data='{{...item}}' />
+        </view>
+      </block>
+    </view>
+  </view>
+
+
+  <view class='footer'>
+    <view class='footer_text'>
+     
+    </view>
+  </view>
+</view>

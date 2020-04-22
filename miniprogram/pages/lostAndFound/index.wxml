@@ -1,0 +1,16 @@
+<view class="navigationBar bg-white">
+  <view class="navigationBarBack">
+  </view>
+  <view class="navigationBarText">
+   校园智多星
+  </view>
+</view>
+<view class="cu-list grid col-3 no-border card shadow" hidden="{{trysearch}}">
+  <block wx:for="{{iconList}}" wx:key='' data-icon='{{item.name}}'>
+    <view class="cu-item" catchtap='pick' data-id="{{index}}">
+      <view class="cuIcon-{{item.icon}} text-{{item.color}}">
+      </view>
+      <text>{{item.name}}</text>
+    </view>
+  </block>
+</view>

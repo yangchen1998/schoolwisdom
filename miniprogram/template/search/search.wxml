@@ -1,0 +1,5 @@
+<!--miniprogram/template/search/search.wxml-->
+<view class='search'>
+  <input class='search_text' bindinput='oninput'></input>
+  <icon type="search" size="20" bindtap='onsearch'></icon>
+</view>

@@ -1,0 +1,20 @@
+<!--miniprogram/pages/more/school_calendar/school_calendar.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">校历校车</view></cu-custom>
+<!-- <view style='height:60px;'>
+  <view class="navigationBar bg-white" style='height:60px; z-index:999; position:fixed;'>
+    <view class="navigationBarBack" bindtap='onBackPage'>
+      <text class="cuIcon-back"></text> 返回
+    </view>
+    <view class="navigationBarText">
+      校历
+    </view>
+  </view>
+</view> -->
+<view view_farther>
+  <text>2019-2020学年校历</text>
+  <image mode='widthFix' src='cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/2019-2020学年校历.jpg' lazy-load='ture' class='image' bindtap='tap1'>
+  </image>
+    <text>秋季学期校车</text>
+  <image mode='widthFix' src='cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/校车.jpg' lazy-load='ture' class='image' bindtap='tap2'>
+  </image>
+</view>

@@ -1,0 +1,89 @@
+{
+  "pages": [
+    "pages/lostAndFound/index",
+    "pages/box/box",
+    "pages/subject/subject",
+    "pages/index/index",
+    "pages/lostAndFound/lostAndFound",
+    "pages/login",
+    "pages/error",
+    "pages/logs/logs",
+    "pages/lostAndFound/found/found",
+    "pages/lostAndFound/help/help",
+    "pages/notice/notice",
+    "pages/repair/repair",
+    "pages/information/information",
+    "pages/lostAndFound/detail/detail",
+    "pages/message/message",
+    "pages/notice/notice-detail/notice-detail",
+    "pages/myinformation/myinformation",
+    "pages/update/update",
+    "pages/release/release",
+    "pages/lostAndFound/lost/lost",
+    "pages/process/process",
+    "pages/help/help",
+    "pages/more/more",
+    "pages/history/history",
+    "pages/setting/setting",
+    "pages/visitor/visitor",
+    "pages/more/school_calendar/school_calendar",
+    "pages/more/school_bus/school_bus",
+    "pages/more/school_class/school_class",
+    "pages/more/school_phone/school_phone",
+    "pages/more/school_opentime/school_opentime",
+    "pages/more/school_works/school_works",
+    "pages/certifying/certifying",
+    "pages/about/about",
+    "pages/search/search",
+    "pages/report/report",
+    "pages/post/post",
+    "pages/carpool/carpool",
+    "pages/carpool/startCarpool",
+    "pages/carpool/carpoolDetail",
+    "pages/count/count",
+    "pages/count/rule",
+    "pages/user/user",
+    "pages/subject/allsubject"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#FFFFFF",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "东大Helper",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true,
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "color": "#B0B0B0",
+    "backgroundColor": "#ffffff",
+    "selectedColor": "#000000",
+    "list": [
+      {
+        "pagePath": "pages/lostAndFound/index",
+        "text": "主页",
+        "iconPath": "image/search1.png",
+        "selectedIconPath": "image/search.png"
+      },
+      {
+        "pagePath": "pages/subject/subject",
+        "text": "课程表",
+        "iconPath": "image/newspaper1.png",
+        "selectedIconPath": "image/newspaper.png"
+      },
+      {
+        "pagePath": "pages/myinformation/myinformation",
+        "text": "我的",
+        "iconPath": "image/user1.png",
+        "selectedIconPath": "image/user.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "sitemapLocation": "sitemap.json",
+  "navigateToMiniProgramAppIdList": [
+    "wxfeee3b8285e9bb1d"
+  ]
+}

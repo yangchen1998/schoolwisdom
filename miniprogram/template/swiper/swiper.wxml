@@ -1,0 +1,13 @@
+<!--template/swiper/swiper.wxml-->
+<template name='swiper'>
+<view class='margin1'>
+  <swiper indicator-dots="ture" autoplay="ture" interval="2000">
+      <swiper-item>
+        <image src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/1.png" class='swiperImage'></image>
+      </swiper-item>
+      <swiper-item>
+        <image src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/2.png" class='swiperImage'></image>
+      </swiper-item>
+    </swiper>
+</view>
+</template>

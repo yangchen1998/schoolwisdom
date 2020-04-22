@@ -1,0 +1,22 @@
+<!--miniprogram/pages/history/history.wxml-->
+<import src='/template/history-template/history-template.wxml' />
+<import src='/template/navigationBar/navigationBar.wxml' />
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">我的历史</view>
+</cu-custom>
+<view class='certifying_view' wx:if="{{none == 'true'}}">
+  <view>
+    <image class='certifying_image' src='/image/certifying.png'></image>
+  </view>
+  <view>你还未创建过任何活动</view>
+</view>
+
+<view wx:if="{{none != 'true'}}">
+  <block wx:for='{{history}}' wx:for-item='item' wx:key='date'>
+    <view catchtap='onPostTap' data-detail='{{item}}'>
+      <template is='history' data='{{...item}}' />
+    </view>
+  </block>
+
+</view>

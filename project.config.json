@@ -1,0 +1,296 @@
+{
+	"miniprogramRoot": "miniprogram/",
+	"cloudfunctionRoot": "cloudfunctions/",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false,
+		"checkInvalidKey": true
+	},
+	"appid": "wx6ff30b1d122f6ec9",
+	"projectname": "%E4%B8%9C%E5%A4%A7Helper",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"libVersion": "2.8.3",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"compileType": "miniprogram",
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 35,
+			"list": [
+				{
+					"id": -1,
+					"name": "db guide",
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "工具箱",
+					"pathName": "pages/box/box",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "我的信息",
+					"pathName": "pages/myinformation/myinformation",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "修改信息",
+					"pathName": "pages/update/update",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "详情",
+					"pathName": "pages/lostAndFound/detail/detail",
+					"query": "post={\"_id\":\"9afd9b6a5d22030102e70e9f1063160d\",\"_openid\":\"oWugP5UDCfPdcREuX8IftMcyptYE\",\"campus\":\"浑南\",\"certification\":\"no\",\"class1\":\"招领\",\"comments\":0,\"contact\":\"123456789464664\",\"date\":\"2019-07-07\",\"detail\":\"你看！\\n看过来！\\n猜猜接下来要干嘛。\\n（・⊝・∞）\",\"formId\":\"f401bfa2d1ef461087c60fe7d0cc9605\",\"height\":711.44,\"identity\":\"user\",\"imgid\":[\"cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o-1254418089/postimage/post_found/2019-07-07/22时32分49秒0.jpg\"],\"location0\":\"浑南校区\",\"location1\":\"1号楼\",\"location2\":\"A区\",\"nickName\":\"某位不愿意透露姓名的同学\",\"postimgid\":\"https://wx.qlogo.cn/mmopen/vi_32/HMdZnN5LpleFP7gm6SnvoJUszrbs4NbWAKOUAfNDedGrOpkVxSHZq1ADurQqNoTbtceicqFz3VIrnssqS7R4icgg/132\",\"state\":\"0\",\"time\":\"2019/07/07 22:34:41\",\"title\":\"我捡到了某同学丢失的物品\",\"type\":\"书籍\",\"viewers\":283,\"width\":711.44}&mold=found",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "消息",
+					"pathName": "pages/message/message",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人资料",
+					"pathName": "pages/information/information",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "发布",
+					"pathName": "pages/release/release",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "通知列表",
+					"pathName": "pages/notice/notice",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "失物招领",
+					"pathName": "pages/lostAndFound/lostAndFound",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "主页",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "正在处理",
+					"pathName": "pages/process/process",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的历史",
+					"pathName": "pages/history/history",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "设置",
+					"pathName": "pages/setting/setting",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "校历",
+					"pathName": "pages/more/school_calendar/school_calendar",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "学生认证",
+					"pathName": "pages/certifying/certifying",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "学生证详情",
+					"pathName": "pages/lostAndFound/detail/detail",
+					"query": "post={\"_id\":\"f4b905395ce03bf30124d6f8346d16ff\",\"_openid\":\"oWugP5UDCfPdcREuX8IftMcyptYE\",\"cardid\":\"20174446\",\"date\":\"2020-03-19\",\"detail\":\"      \",\"imgid\":\"cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/学生证.png\",\"loacation0\":\"教学区\",\"loacation1\":\"1号楼\",\"loacation2\":\"A区\",\"postimgid\":\"https://wx.qlogo.cn/mmopen/vi_32/HMdZnN5LpleFP7gm6SnvoJUszrbs4NbWAKOUAfNDedGrOpkVxSHZq1ADurQqNoTbtceicqFz3VIrnssqS7R4icgg/132\",\"state\":\"0\",\"type\":\"卡证\"}",
+					"scene": null
+				},
+				{
+					"id": 25,
+					"name": "新",
+					"pathName": "pages/lostAndFound/detail/detail",
+					"query": "pot=[\"cbdb4c165cf89383004fff08453b3096\",\"post_found\"]",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "新通知",
+					"pathName": "pages/notice/notice-detail/notice-detail",
+					"query": "postnotice=[\"2d9d2d8c5cf8daaa0077678b221b320d\",\"back\"]",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "主页",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "登记",
+					"pathName": "pages/post/post",
+					"query": "post={\"_id\":\"08560c9e5d05a51e02396b9f246368b0\",\"_openid\":\"oWugP5UDCfPdcREuX8IftMcyptYE\",\"contact\":\"\",\"date\":\"2020-03-16\",\"detail\":\"\",\"identity\":\"administrator\",\"imgid\":[\"cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o-1254418089/postimage/found/2020-03-16/10时9分54秒0.jpg\"],\"location0\":\"浑南校区\",\"location1\":\"1号楼\",\"location2\":\"A区\",\"nickName\":\"某位不愿意透露姓名的同学\",\"postimgid\":\"https://wx.qlogo.cn/mmopen/vi_32/HMdZnN5LpleFP7gm6SnvoJUszrbs4NbWAKOUAfNDedGrOpkVxSHZq1ADurQqNoTbtceicqFz3VIrnssqS7R4icgg/132\",\"state\":\"0\",\"time\":\"2019/06/16 10:10:36\",\"type\":\"书籍\"}&mold=失物招领",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "举报",
+					"pathName": "pages/report/report",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "找到的物品",
+					"pathName": "pages/lostAndFound/found/found",
+					"query": "mold=post_found",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "关于我们",
+					"pathName": "pages/about/about",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "电话簿",
+					"pathName": "pages/more/school_phone/school_phone",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加电话号码",
+					"pathName": "pages/post/post",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "实验",
+					"pathName": "pages/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 27,
+					"name": "拼车页面",
+					"pathName": "pages/carpool/carpool",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发起拼车页面",
+					"pathName": "pages/carpool/startCarpool",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 29,
+					"name": "拼车详情页",
+					"pathName": "pages/carpool/carpoolDetail",
+					"query": "detail={\"_id\":\"ad7ddb0d-1d2a-4042-87f7-2a5ffd706b51\",\"creator\":{\"bad_record\":[\"\"],\"campus\":\"沈河校区\",\"major\":\"通信工程\",\"name\":\"王五\",\"sex\":\"男\",\"student_id\":\"12345678\"},\"date\":\"2019-08-02\",\"destination\":\"沈河校区\",\"notes\":\"这是备注信息\",\"now_nums\":3,\"origin\":\"浑南校区\",\"people_nums\":4,\"phone\":\"12314123423\",\"sharing\":[{\"bad_record\":[\"\"],\"campus\":\"沈河校区\",\"major\":\"通信工程\",\"name\":\"王五五\",\"sex\":\"男\",\"student_id\":\"22345678\"},{\"bad_record\":[\"\"],\"campus\":\"浑南校区\",\"major\":\"通信工程\",\"name\":\"王五四\",\"sex\":\"男\",\"student_id\":\"22345678\"},{\"bad_record\":[\"\"],\"campus\":\"沈河校区\",\"major\":\"通信工程\",\"name\":\"王五六\",\"sex\":\"男\",\"student_id\":\"22345678\"}],\"status\":\"doing\",\"tag_campus\":0,\"tag_date\":0,\"tag_destination\":0,\"tag_origin\":0,\"time\":\"15:00\",\"viewers\":1000,\"end_tag\":0}",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "使用帮助",
+					"pathName": "pages/help/help",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜索页面",
+					"pathName": "pages/search/search",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "计算器",
+					"pathName": "pages/count/count",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "绩点细则",
+					"pathName": "pages/count/rule",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "课程表",
+					"pathName": "pages/subject/subject",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "主页",
+					"pathName": "pages/lostAndFound/index",
+					"scene": null
+				}
+			]
+		}
+	}
+}

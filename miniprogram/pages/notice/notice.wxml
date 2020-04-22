@@ -1,0 +1,34 @@
+<!--pages/notice/notice.wxml-->
+<view style='height:90px;'>
+  <view class="navigationBar bg-white" style='height:60px; z-index:999; position:fixed;'>
+    <view class="navigationBarBack" bindtap='onBackPage'>
+      <text class="cuIcon-back"></text> 返回
+    </view>
+    <view class="navigationBarText">
+      通知
+    </view>
+  </view>
+  <view class='margin2'>
+  <block wx:for="{{tabs}}" wx:key="*this">
+    <view id="{{index}}" class="navbar_item" bindtap="tabClick">
+      <view style='margin-left: 20rpx; '>{{item}}</view>
+    </view>
+  </block>
+</view>
+</view>
+<view class='slider'>
+  <view class="sliderIndex" style='transform: translateX({{sliderOffset}}px);'></view>
+</view>
+<view class="content">
+  <block wx:for='{{noticeList}}' wx:for-item='item' wx:key=' {{index}}'>
+    <view class='post-container bg-white' catchtap='onPostTap' data-notice='{{item}}' data-id='{{index}}'>
+      <view class='post-title'>
+        <text class='notice'>{{item.title}}</text>
+      </view>
+      <view class='post-discoverer-date'>
+        <text class='postdate'>{{item.date}}</text>
+      </view>
+    </view>
+    <view class='horizon1'></view>
+  </block>
+</view>

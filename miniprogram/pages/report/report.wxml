@@ -1,0 +1,16 @@
+<!--miniprogram/pages/report/report.wxml-->
+<import src='/template/navigationBar/navigationBar.wxml' />
+<view>
+  <template is='navigationBar' data='{{navigationBarText}}' />
+</view>
+<form name="form" bindsubmit="formSubmit" report-submit="true">
+  <view class="padding-lr ">
+    <view class="cu-form-group margin-top">
+      <textarea name="reason" style='height:220px;' maxlength="-1" placeholder="请填写举报原因"></textarea>
+    </view>
+  </view>
+
+  <view class="padding-xl">
+    <button type='primary' class='cu-btn block bg-green margin-tb-sm lg' form-type="submit">确认</button>
+  </view>
+</form>

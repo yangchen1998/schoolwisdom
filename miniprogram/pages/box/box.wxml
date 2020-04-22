@@ -1,0 +1,42 @@
+<!--index.wxml-->
+<import src='/template/swiper/swiper.wxml' />
+<import src='/template/navigation/navigation.wxml' />
+<import src='/template/post-item-template/post-item-template.wxml' />
+<view style='height:60px;'>
+  <view class="navigationBar bg-white" style='height:60px; z-index:999; position:fixed;'>
+    <view class="navigationBarBack">
+    </view>
+    <view class="navigationBarText">
+      工具箱
+    </view>
+  </view>
+</view>
+<!-- <view bg-white>
+  <template is='swiper' />
+</view> -->
+
+<view class="cu-list grid col-3 no-border card shadow">
+  <block wx:for="{{iconList}}" wx:key='' data-icon='{{item.name}}'>
+    <view class="cu-item" catchtap='pick' data-id="{{index}}">
+      <view class="cuIcon-{{item.icon}} text-{{item.color}}">
+      </view>
+      <text>{{item.name}}</text>
+    </view>
+  </block>
+</view>
+<!-- 没有认证时提示前往认证的弹窗-->
+<view class="cu-modal {{modalName=='tip'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="bg-img" style="background-image: url('http://m.qpic.cn/psb?/V1440qhp31sLv2/Y*7gILX4gwLyW7f4bdStyWRApTecvksrgDS2R4UGAfk!/b/dIQAAAAAAAAA&bo=yQHXAAAAAAADFy0!&rf=viewer_4');height:200px;">
+      <view class="cu-bar justify-end text-white">
+        <view class="action" bindtap="hideModal1">
+          <text class="cuIcon-close "></text>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  solid-left" style='height:55px;' bindtap="hideModal21">前往认证</view>
+      <view class="action margin-0 flex-sub  solid-left" style='height:55px;' bindtap="hideModal22">我知道了</view>
+    </view>
+  </view>
+</view>

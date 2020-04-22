@@ -1,0 +1,75 @@
+<!--miniprogram/help/help.wxml-->
+<import src='/template/navigationBar/navigationBar.wxml' />
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">帮助手册</view>
+</cu-custom>
+<!-- <view style='margin: 0 20rpx;'>
+  <text>使用帮助手册</text>
+  <video class="video" src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/video/介绍视频.mp4" controls></video>
+  <view>
+    <text>如何发布失物招领</text>
+    <video class="video" src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/video/发布.mp4" controls></video>
+  </view>
+  <view>
+    <text>如何查找</text>
+    <video class="video" src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/video/查找.mp4" controls></video>
+  </view>
+  <view>
+    <text>查阅通知</text>
+    <video class="video" src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/video/查看通知.mp4" controls></video>
+  </view>
+  <view>
+    <text>如何报修以及关注进程</text>
+    <video class="video" src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/video/发布报修.mp4" controls></video>
+  </view>
+  <text>其它问题</text>
+  <video class="video" src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/video/其它.mp4" controls></video>
+  <view>
+    <text>关于登录问题</text>
+    <video class="video" src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/video/登录.mp4" controls></video>
+  </view>
+  <view>
+    <text>关于隐私问题</text>
+    <video class="video" src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/video/隐私.mp4" controls></video>
+  </view>
+  <view>
+    <text>关于报修问题</text>
+    <video class="video" src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/video/发布.mp4" controls></video>
+  </view>
+  <view>
+    <text>关于通知问题</text>
+    <video class="video" src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/video/通知.mp4" controls></video>
+  </view>
+</view> -->
+<view class="margin-top">
+  <text class="margin-left margin-top text-bold">1、首次加载</text>
+  <image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/QQ图片20190726220718.png"></image>
+  <image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/未认证用户提醒.png"></image>
+  <text class="margin-left margin-top text-bold">2、身份认证（通过后会收到通知）</text>
+  <image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/认证申请页面.png"></image>
+  <image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/认证申请后提示.png"></image>
+  <image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/认证审核通过通知.png"></image>
+<text class="margin-left margin-top text-bold">4、动态</text>
+<image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/动态列表.png"></image>
+<image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/动态详情.png"></image>
+<text class="margin-left margin-top text-bold">5、消息</text>
+<image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/消息.png"></image>
+<text class="margin-left margin-top text-bold">6、工具箱</text>
+<image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/工具箱页面.png"></image>
+<text class="margin-left margin-top text-bold">7、拼车</text>
+<image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/拼车列表页面.png"></image>
+<image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/发起拼车页面.png"></image>
+<image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/点击我要加入拼车.png"></image>
+<image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/发起拼车成功提醒.png"></image>
+<image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/拼车成功通知.png"></image>
+<text class="margin-left margin-top text-bold">8、我的历史</text>
+<image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/我的历史.png"></image>
+<text class="margin-left margin-top text-bold">9、电话簿</text>
+<image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/电话簿.png"></image>
+<text class="margin-left margin-top text-bold">10、我的信息</text>
+<image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/我的信息.png"></image>
+<text class="margin-left margin-top text-bold">11、发布</text>
+<image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/发布类型.png"></image>
+<image class="image" mode="aspectFit" src="cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/Help/发布心情.png"></image>
+</view>

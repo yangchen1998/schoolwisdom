@@ -1,0 +1,120 @@
+<!--index.wxml-->
+<view class="cu-custom" style="height:{{CustomBar}}px">
+  <view class="cu-bar fixed bg-white" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <view class="action" bindtap="cancelSearch" wx:if="{{tryfocus}}">
+      <text class="cuIcon-back"></text>
+    </view>
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder=" 搜索一下 . . ." value='{{inputValue}}' confirm-type="search" bindinput="searchInput" bindfocus="tryfocus" bindblur="tryblur" bindconfirm="search" bindkeyboardheightchange="keyboardheightchange"></input>
+    </view>
+  </view>
+</view>
+
+<!--主页面展示-->
+<view hidden="{{tryfocus}}">
+  <view class="bg-white nav" style="position:fixed;z-index:999; width:{{windowWidth}}px">
+    <view class="flex text-center">
+      <view class="cu-item flex-sub" wx:for="{{navigation}}" wx:key bindtap="navgationSelect" data-id="{{index}}">
+        <text class="{{tabnav == index?'text-black':'text-gray'}}" style="height:90rpx; border-bottom:{{tabnav == index?'4rpx solid':''}};">{{item}}
+      </text>
+      </view>
+    </view>
+  </view>
+  <!-- 在页面上放一个隐藏区域，并用image组件去加载一个或多个图片资源 -->
+  <view style="display:none">
+    <image wx:for="{{attraction}}" wx:key="id" id="{{item.id}}" src="{{item.imgid[0]}}" bindload="onImageLoad1"></image>
+  </view>
+  <view scroll-y="true" style="height:{{scrollH}}px;padding-top:95rpx;" bindscrolltolower="loadImages">
+    <view style="width:100%">
+      <view class="img_item">
+        <view class="radius shadow-warp bg-white margin-bottom-xs" wx:for="{{col1}}" wx:key="id" bindtap="chooseAttraction1" data-id="{{index}}">
+          <image class="radius-up" src="{{item.imgid[0]}}" style="width:100%;height:{{item.height}}px;border-radius: 5px 5px 0 0;"></image>
+          <text class="text-cut-2 text-bold text-black  padding-bottom-xs padding-left-xs">{{item.title}}</text>
+          <view style="align-content: right;display: flex;flex-direction: row;">
+          <text class="text-sm text-cut  padding-bottom-xs padding-left-xs" style="width: 55%;">{{item.class1}}</text>
+          <text class="text-sm text-cut text-gray  padding-bottom-xs padding-left-xs padding-right-xs text-right">{{item.date}}</text>
+          </view>
+          
+          <!--    <view class="cuIcon-like margin-right padding-bottom-xs lg text-right"></view> -->
+        </view>
+      </view>
+      <view class="img_item">
+        <view class="radius shadow-warp bg-white margin-bottom-xs" wx:for="{{col2}}" wx:key="id" bindtap="chooseAttraction2" data-id="{{index}}">
+          <image class="radius-up" src="{{item.imgid[0]}}" style="width:100%;height:{{item.height}}px;border-radius: 5px 5px 0 0;"></image>
+          <text class="text-cut-2 text-bold text-black padding-bottom-xs padding-left-xs">{{item.title}}</text>
+          <view  style="align-content: right;display: flex;flex-direction: row;">
+          <text class="text-sm text-cut  padding-bottom-xs padding-left-xs" style="width: 55%;">{{item.class1}}</text>
+          <text class="text-sm text-cut text-gray  padding-bottom-xs padding-left-xs padding-right-xs text-right ">{{item.date}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!--点击搜索框时的页面内容-->
+<view wx:if="{{tryfocus}}" style="height:{{search_height}}px" hidden="{{bindSearch}}">
+  <view class="history" wx:if="{{search_history && search_history.length != 0}}">
+    <view class="history_text">
+      历史记录
+    </view>
+    <view class="history_icon" bindtap="onDeleteHistory">
+      <text class="cuIcon-delete text-gray"></text>
+    </view>
+  </view>
+  <view class="mynav bg-white" wx:if="{{search_history && search_history.length != 0}}">
+    <button class="cu-btn round line-gray mybtn" wx:for="{{search_history}}" wx:key bindtap="tapHistory" bindlongtap="ltapHistory" data-id="{{index}}">
+      <text class="text-gray">{{item}}</text>
+    </button>
+  </view>
+  <view class="history2 text-left text-bold" wx:if="{{hot_search && hot_search.length != 0}}">
+    热门搜索
+  </view>
+  <view class="grid col-5 padding-left-sm padding-right-sm bg-white" wx:if="{{hot_search && hot_search.length != 0}}">
+    <button class="cu-btn round line-red mybtn" wx:for="{{hot_search}}" wx:key bindtap="hotSelect" data-id="{{index}}">
+      <text class="cuIcon-hotfill text-red"></text>
+      <text class="text-black">{{item.name}}</text>
+    </button>
+  </view>
+  <view class="history2 text-left">
+    最新推荐
+  </view>
+  <view wx:for="{{recommend}}" wx:key="{{index}}">
+  <view wx:if="{{item.class1 == '活动'}}" class="cu-card article no-card" data-id="{{index}}"  bindtap="onRecommend">
+    <view class="cu-item shadow">
+      <view class="title">
+        <view class="text-cut">{{item.title}}</view>
+      </view>
+      <view class="content">
+        <view class="desc">
+          <view class="text-content">{{item.detail}}</view>
+          <view>
+            <view class="cu-tag bg-red light sm round">{{item.campus}}</view>
+            <view class="cu-tag bg-green light sm round">活动推广</view>
+          </view>
+        </view>
+        <image src="{{item.imgid[0]}}" mode="aspectFill"></image>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{item.class1 == '通知'}}" class="cu-card article no-card" data-id="{{index}}" bindtap="onRecommend">
+    <view class="cu-item shadow">
+      <view class="title">
+        <view class="text-cut">{{item.title}}</view>
+      </view>
+      <view class="content">
+        <image src="{{item.imgid[0]}}" mode="aspectFill"></image>
+        <view class="desc">
+          <view class="text-content"> {{item.detail}}</view>
+          <view>
+            <view class="cu-tag bg-red light sm round">{{item.campus}}</view>
+            <view class="cu-tag bg-green light sm round">东大资讯</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  </view>
+  
+
+</view>

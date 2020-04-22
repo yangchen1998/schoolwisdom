@@ -1,0 +1,47 @@
+<!--pages/uodate/update.wxml-->
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">修改信息</view>
+</cu-custom>
+<view style="height:{{winH}}px;width:{{winW}}px">
+  <view class='userinfo-information'>
+    <text class='information-text'>姓 名 </text>
+    <view class='input'>{{name}}(仅在认证时可以更改)</view>
+  </view>
+  <view class='userinfo-information'>
+    <text class='information-text'>学 号 </text>
+    <view class='input'>{{student_id}}(仅在认证时可以更改)</view>
+  </view>
+  <view class='userinfo-information'>
+    <text class='information-text'>学 院 </text>
+    <view class='input'>{{college}}(仅在认证时可以更改)</view>
+  </view>
+  <view class='userinfo-information'>
+    <text class='information-text'>专 业 </text>
+    <view class='input'>{{major}}(仅在认证时可以更改)</view>
+  </view>
+  <view class='userinfo-information'>
+    <text class='information-text'>校 区 </text>
+    <input value='{{campus}}' class='input' bindinput='bindcampusInput' />
+  </view>
+  <view class='userinfo-information'>
+    <text class='information-text'>电 话 </text>
+    <input type='number' value="{{phone}}" class='input' type='number' maxlength='11' bindinput='bindphoneInput' />
+  </view>
+  <view class='userinfo-information'>
+    <text class='information-text'>邮 箱 </text>
+    <input value="{{email}}" class='input' bindinput='bindemailInput' />
+  </view>
+  <view class='userinfo-information'>
+    <text class='information-text'>宿 舍 </text>
+    <input value="{{dormitory}}" class='input' bindinput='binddormitoryInput' />
+  </view>
+  <view class='userinfo-information'>
+    <text class='information-text'>寝 室 </text>
+    <input value="{{roomnum}}" class='input' bindinput='bindroomnumInput' />
+  </view>
+  <view class="btn-area combottom">
+    <button class="btn1" bindtap="onReset">取消</button>
+    <button class="btn2" bindtap="onSubmit">确认</button>
+  </view>
+</view>

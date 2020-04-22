@@ -1,0 +1,83 @@
+<!--miniprogram/pages/post/post.wxml-->
+
+
+<form bindsubmit="formSubmit1" bindreset="formReset" report-submit="true">
+  <view class="cu-form-group">
+    <view class="title">添加分组</view>
+  </view>
+   <view class="cu-form-group">
+    <view class="title">分类id：</view>
+    <input name="input_id" type='number' maxlength='8' placeholder="请输入"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">分组名称：</view>
+    <input name="input_name" placeholder="请输入"></input>
+  </view>
+
+  <view class="btn-area">
+    <button class="btn2" form-type="submit">确认</button>
+  </view>
+</form>
+
+
+<form bindsubmit="formSubmit2" bindreset="formReset" report-submit="true">
+  <view class="cu-form-group">
+    <view class="title">添加联系人</view>
+  </view>
+  <!-- <view class="cu-form-group">
+    <view class="title">分类名称:</view>
+    <input name="input_name1" placeholder="请输入"></input>
+  </view> -->
+  <view class="cu-form-group">
+    <view class="title">浑南管委会</view>
+  </view>
+  <!-- <view class="cu-form-group">
+    <view class="title">分类id：</view>
+    <input name="input_id" type='number' maxlength='8' placeholder="请输入"></input>
+  </view> -->
+  <view class="cu-form-group">
+    <view class="title">联系人名称：</view>
+    <input name="input_name1" placeholder="请输入"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">联系人号码：</view>
+    <input name="input_phone" value='024-836' placeholder="请输入"></input>
+  </view>
+
+  <view class="btn-area">
+    <button class="btn2" form-type="submit">确认</button>
+  </view>
+</form>
+
+
+
+
+
+
+
+<!-- <view class='view_farther'>
+  <view class='certifying_view'>
+    <view>
+      <image class='certifying_image' src='/image/certifying.png'></image>
+    </view>
+    您是未实名用户
+    <view>无法查看、获取隐私信息</view>
+  </view>
+</view>
+
+ -->
+<!-- <view class="cu-modal {{modalName=='Image'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="bg-img" style="background-image: url('../../image/提示.png');height:200px;">
+      <view class="cu-bar justify-end text-white">
+        <view class="action" bindtap="hideModal1">
+          <text class="cuIcon-close "></text>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal21">前往认证</view>
+      <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal22">继续发布</view>
+    </view>
+  </view>
+</view> -->

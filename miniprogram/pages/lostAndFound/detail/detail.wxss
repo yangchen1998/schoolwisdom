@@ -1,0 +1,53 @@
+/* pages/lostAndFound/detail/detail.wxss */
+@import '/template/post-item-template/post-item-template.wxss';
+@import '/pages/message/message.wxss';
+page {
+  font-size: medium;
+  background-color:#FFFFFF;
+}
+.view_user {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+}
+
+.view_user_image {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-top: 5px;
+  align-items: center;
+}
+
+.view_user_name {
+  color: #aaa;
+  font-size: small;
+}
+
+.view_user_date {
+  color: #aaa;
+  font-size:smaller;
+}
+
+.view_detail {
+  margin-top: 10px;
+}
+
+
+
+.view_reclaim {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.view_reclaim_share {
+  flex: 1;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.view_reclaim_image {
+  height: 70rpx;
+  width: 70rpx;
+}

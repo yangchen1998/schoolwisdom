@@ -1,0 +1,125 @@
+<!--lostAndFound.wxml-->
+<import src='/template/post-item-template/post-item-template.wxml' />
+<import src='/template/swiper/swiper.wxml' />
+<import src='/template/navigation/navigation.wxml' />
+<view class='bg-white' style='height:{{CustomBar+StatusBar}}px;'>
+  <view class=' navigation bg-white  cu-bar padding-top-lg' style='height:{{CustomBar}}px;'>
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="搜索已登记信息" value="{{inputsearchtext ? inputsearchtext :''}}" confirm-type="search" bindconfirm="onSearch" bindinput="intputSearch" bindfocus='trySearch' bindkeyboardheightchange="onKeyboard"></input>
+      <text wx:if="{{inputsearchtext}}" class="cuIcon-roundclosefill text-gray" style="width: 20px; font-size: 34rpx;" bindtap="onClearsearch"></text>
+    </view>
+    <view style='width:{{CustomBar}}px'>
+    </view>
+  </view>
+  <view wx:if="{{trysearch==1}}" style='height:{{CustomBar}}px;'>
+  </view>
+  <view class='bg-white' style='height:588px;' wx:if="{{trysearch}}" bindtap="cancelSearch">
+    <block wx:for='{{searchList}}' wx:for-item='item' wx:key='{{index}}'>
+      <view wx:if="{{item.isShow}}" class="cu-form-group" style='min-height:40px;' data-name='{{item.name}}' bindtap='onSearchTip'>
+        <view class="title text-black">#{{item.name}}</view>
+      </view>
+    </block>
+  </view>
+  <view class='margin2' style='height:28px;margin-top:{{CustomBar}}px;'>
+    <view class="{{interface.tap1 == 1 ?'cu-item2':'cu-item21'}}" bindtap='onTap1'>
+      <text class="{{interface.tap1 == 1 ?'cur2 margin-top-5xs':''}}">{{interface.interface1}}</text>
+    </view>
+    <view class="{{interface.tap2 == 1 ?'cu-item2':'cu-item21'}}" bindtap='onTap2'>
+      <text class="{{interface.tap2 == 1 ?'cur2 margin-top-5xs':''}}">{{interface.interface2}}</text>
+    </view>
+    <view class="{{interface.tap3 == 1 ?'cu-item2':'cu-item21'}}" bindtap='onTap3' hidden="{{interface.hide3 =='yes'}}">
+      <text class="{{interface.tap3 == 1 ?'cur2 margin-top-5xs':''}}">{{interface.interface3}}</text>
+    </view>
+  </view>
+</view>
+
+
+
+<!--顶部导航栏，使用模板-->
+<view style='position:fixed z-index: -1;' hidden="{{trysearch == 1}}">
+  <view style='position:fixed z-index:-1;'>
+    <block wx:for='{{postList1}}' wx:for-item='item' wx:for-index='index' wx:key='time'>
+      <view wx:if="{{item.show == 1 }}" class="cu-card1 case shadow shadow-lg bg-white" data-post='{{item}}' data-id="{{index}}" catchtap='onPostTap'>
+        <view class="cu-item" style='margin:0 20rpx 5rpx 20rpx;'>
+          <view class="text-left padding-xs flex" data-listid='{{index}}'>
+            <view class="text-cut text-lg  padding-top-xs flex-treble">{{item.title}}</view>
+            <view class="text-gray text-right text-sm padding-top-xs">{{item.class1}}</view>
+          </view>
+          <view class="cu-list menu-avatar" data-listid='{{index}}'>
+            <view class='post-discoverer-date'>
+              <image class='post-discoverer' src="{{item.postimgid}}" lazy-load='ture'></image>
+              <view class="text-sm date_l text-gray">{{item.nickName}}</view>
+            </view>
+          </view>
+          <view data-listid='{{index}}'>
+            <text class="textarea-cut padding-left-xs text-lg text-df">{{item.detail}}</text>
+          </view>
+          <view class='image margin-top-sm'>
+            <image wx:if="{{item.imgid.length == 1 }}" data-imglistid='{{index}}' data-imgid='{{item.imgid[0]}}' src="{{item.imgid}}" lazy-load='ture' mode='aspectFill' catchtap='onPostimg' class="one-image"></image>
+            <view wx:if="{{item.imgid.length == 2 }}" class="grid">
+              <view style='width:350rpx; height:350rpx;' wx:for="{{item.imgid}}" wx:key='' wx:for-index='index2' wx:for-item="images">
+                <image class='bg-img' data-imglistid='{{index}}' data-imgid='{{images}}' src="{{images}}" lazy-load='ture' mode='scaleToFill' catchtap='onPostimg' class="two-image"></image>
+              </view>
+            </view>
+            <view wx:if="{{item.imgid.length >= 3 }}" class="grid">
+              <view style='width:235rpx; height:235rpx;' wx:for="{{item.imgid}}" wx:for-index='index2' wx:key='' wx:for-item="images">
+                <image class='bg-img' data-imglistid='{{index}}' data-imgid='{{images}}' src="{{images}}" lazy-load='ture' mode='scaleToFill' catchtap='onPostimg' class="more-image"></image>
+              </view>
+            </view>
+
+            <!--  <image data-imgid='{{item.imgid}}' src="{{item.imgid[3]}}" lazy-load='ture' mode='aspectFill' catchtap='onPostimg' style='width:580rpx;height:380px;'></image> -->
+            <view class="text-gray text-sm text-right padding-xs flex" data-listid='{{index}}' catchtap='onPostTap'>
+              <view class='postd flex-treble'>
+                <text class='post-date'>{{item.date}}</text>
+                <view class='post-location'> {{item.location0}}{{item.location1}}{{item.location2}}</view>
+              </view>
+              <text class="cuIcon-attentionfill margin-lr-xs"></text> {{item.viewers}}
+              <text class="cuIcon-messagefill margin-lr-xs"></text> {{item.comments[0]}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<image hidden="{{backtop!=1}}" class='backtop' src='/image/top.png' style='bottom: {{bottom1}}rpx;' bindtap='onBacktop'></image>
+<image hidden="{{more3!=1}}" class='backtop padding-xs' src='/image/ranking.png' style='bottom: {{bottom3}}rpx;' bindtap='onIndex'></image>
+<image hidden="{{more2!=1}}" class='backtop' src='/image/release2.png' style='bottom: {{bottom2}}rpx;' bindtap='onRelease'></image>
+<image class='moretab round shadow-warp' src='/image/release.png' animation="{{animation}}" style='bottom:30px;' bindtap='rotate'></image>
+
+
+<!--刷新弹窗-->
+<view class='cu-load load-modal' wx:if="{{loadModal}}">
+  <image src='/image/certifying.png' class='png' mode='aspectFit'></image>
+  <view class='gray-text'>刷新中...</view>
+</view>
+
+<!--未认证用户查看详情时提示-->
+<view class="cu-modal {{modalName=='tip'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="bg-img" style="background-image: url('http://m.qpic.cn/psb?/V1440qhp31sLv2/NtlHuGmM3oyQ3xwWUAN0rqW2IYLyiUGeCD*L.VVtO30!/b/dL4AAAAAAAAA&bo=pQEPAQAAAAADB4g!&rf=viewer_4');height:200px;">
+      <view class="cu-bar justify-end text-white">
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close "></text>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  solid-left" style='height:55px;' bindtap="hideModal21">前往认证</view>
+      <view class="action margin-0 flex-sub  solid-left" style='height:55px;' bindtap="hideModal22">继续浏览</view>
+    </view>
+  </view>
+</view>
+
+<!-- 没有本地缓存时-->
+<view class="cu-modal {{getUserInfo == 1 ?'show':''}}" catchtouchmove="move">
+  <view class="cu-dialog">
+    <view class="bg-img" style="background-image: url('http://m.qpic.cn/psb?/V1440qhp31sLv2/Y*7gILX4gwLyW7f4bdStyWRApTecvksrgDS2R4UGAfk!/b/dIQAAAAAAAAA&bo=yQHXAAAAAAADFy0!&rf=viewer_4');height:200px;">
+    </view>
+    <view class="cu-bar bg-white">
+      <button class="action margin-0 flex-sub  solid-left" bindtap="onCancelInfo" style='height:55px;width:100%; margin:0;'>暂不</button>
+      <button class="action margin-0 flex-sub  solid-left" style='height:55px;width:100%; margin:0;' open-type='getUserInfo' bindgetuserinfo="onGotUserInfo">授权获取</button>
+    </view>
+  </view>
+</view>

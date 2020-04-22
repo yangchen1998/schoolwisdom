@@ -1,0 +1,114 @@
+<!--miniprogram/pages/certifying/certifying.wxml-->
+<import src='/template/navigationBar/navigationBar.wxml' />
+<view>
+  <template is='navigationBar' data='{{navigationBarText}}' />
+</view>
+<form bindsubmit="formSubmit" bindreset="formReset" report-submit="true">
+  <view class="cu-form-group">
+    <view class="title">姓 名：</view>
+    <input name="input_name" placeholder="请输入您的姓名"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">学 号：</view>
+    <input name="input_id" type='number' maxlength='8' placeholder="请输入您的学号"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">校 区：</view>
+    <input name="input_campus" placeholder="请输入您所在的校区"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">学 院：</view>
+    <input name="input_college" placeholder="请输入您的学院全称"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">专 业：</view>
+    <input name="input_major" placeholder="请输入您的专业全称"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">邮 箱：</view>
+    <input name="input_email" placeholder="请输入您的邮箱"></input>
+  </view>
+
+
+  <!-- <view class='student_card' style='heigh:180px;margin:auto;'>
+      <view class='information_view' style='heigh:180px;'>
+        <view style='heigh:180px;'>
+          <image class='background_image' style='heigh:180px;' src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/background2.jpg"></image>
+        </view>
+        <view class="section0" style='margin:auto; heigh:180px;'>
+          <view class="section">
+            <view class="title">
+              姓   名:
+            </view>
+            <input name="input_name" placeholder="请输入您的真实姓名" />
+          </view>
+
+          <view class="cu-form-group">
+            <view class="title">输入框</view>
+            <input placeholder="三字标题"></input>
+          </view>
+
+          <view class="section">
+            <view class="section__title" style='font-size:medium;'>
+              <text>学   号:</text>
+            </view>
+            <input name="input_id" type='number' maxlength='8' placeholder="请输入您的学号" style='font-size:medium; hight:28px;' />
+          </view>
+          <view class="section section_gap">
+            <view class="section__title" style='font-size:medium;'>
+              <text>校   区:</text>
+            </view>
+            <input name="input_campus" placeholder="请输入您所在的校区" style='font-size:medium; hight:28px;' />
+          </view>
+          <view class="section">
+            <view class="section__title" style='font-size:medium;'>
+              <text>学   院:</text>
+            </view>
+            <input name="input_college" placeholder="请输入您的学院全称" style='font-size:medium; hight:28px;' />
+          </view>
+          <view class="section">
+            <view class="section__title" style='font-size:medium;'>
+              <text>专   业:</text>
+            </view>
+            <input name="input_major" placeholder="请输入您的专业全称" style='font-size:medium; hight:28px;' />
+          </view>
+          <view class="section">
+            <view class="section__title" style='font-size:medium;'>
+              <text>邮   箱:</text>
+            </view>
+            <input name="input_email" placeholder="请输入您的邮箱" style='font-size:medium; hight:28px;' />
+          </view>
+        </view>
+      </view>
+    </view> -->
+  <view class="cu-bar bg-white">
+    <view class="action">
+      学生证上传(必选)
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:if="{{tempFilePaths}}" bindtap="ViewImage">
+        <image src='{{tempFilePaths}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" hidden="{{tempFilePaths}}" bindtap="ChooseImage">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+
+  <view class="padding bg-white" wx:if="{{tempFilePaths}}">
+    上传进度
+    <view class="cu-progress round">
+      <view class="bg-green" style="width:{{progress}}%;">{{progress}}%</view>
+    </view>
+  </view>
+
+  <view class="btn-area cu-bar bg-white tabbar" style="display:flex; position: fixed;width: 100%;bottom: 0;z-index: 1024;">
+    <button class="btn1 text-gray" form-type="reset" style="width: 190px;margin:2px 10px 10px 5px;">取消</button>
+    <button class="btn2" disabled="{{progress != 100}}"  form-type="submit" style="width: 190px;margin:2px 5px 10px 10px;">确认</button>
+  </view>
+</form>

@@ -1,0 +1,75 @@
+/* pages/lostAndFound/lostAndFound.wxss */
+@import '/template/post-item-template/post-item-template.wxss';
+@import '/template/navigation/navigation.wxss';
+@import '/template/swiper/swiper.wxss';
+@import '/pages/message/message.wxss';
+@import '/pages/lostAndFound/found/found.wxss';
+@import '/pages/box/box.wxss';
+
+.margin1 {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.backtop {
+  float: right;
+  position: fixed;
+  right: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.moretab {
+  float: right;
+  position: fixed;
+  right: 22rpx;
+  width: 68rpx;
+  height: 68rpx;
+}
+
+/* .ranking{
+  float: right;
+  position: fixed;
+  right: 20rpx;
+  height: 80rpx;
+  width:100rpx;
+} */
+
+.imgwidth {
+  width: 711.44rpx;
+  height: 480rpx;
+}
+
+.imgheight {
+  width: 320rpx;
+  height: 480rpx;
+}
+
+.imgbgsq {
+  width: 711.44rpx;
+  height: 711.44rpx;
+}
+
+.imgsq {
+  width: 400rpx;
+  height: 400rpx;
+}
+
+.two-image {
+  width: 350rpx;
+  height: 350rpx;
+  padding: 1px;
+}
+
+.more-image {
+  width: 235rpx;
+  height: 235rpx;
+  padding:1px;
+}
+
+.one-image {
+  width: 580rpx;
+  height: 380px;
+  padding: 1px;
+}

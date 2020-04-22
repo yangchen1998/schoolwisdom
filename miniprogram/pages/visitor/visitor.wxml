@@ -1,0 +1,18 @@
+<!--miniprogram/pages/visitor/visitor.wxml-->
+<import src='/template/swiper/swiper.wxml' />
+<view class='view_farther'>
+  <view>
+    <template is='swiper' />
+  </view>
+  <view class='feature' style='margin-top:30px;'>
+    <view class='feature1'>
+      <view class='feature2' bindtap='tap1'>东大简介</view>
+      <view class='feature2' bindtap='tap1'>东大官网</view>
+    </view>
+    <view class='feature1'>
+      <view class='feature2' bindtap='tap1'>使用帮助</view>
+      <view class='feature2' bindtap='tap1'>电话簿</view>
+    </view>
+
+  </view>
+</view>

@@ -1,0 +1,136 @@
+<!--pages/lostAndFound/detail/detail.wxml-->
+<import src='/template/navigationBar/navigationBar.wxml' />
+<view style='height:60px;'>
+  <view class="navigationBar bg-white" style='height:60px; z-index:999; position:fixed; margin-left:20rpx;'>
+    <view class="navigationBarText text-cut text-black text-left" style='margin-top:23px;text-align:left;font-size:18px;'>
+      {{post.title}}
+    </view>
+  </view>
+</view>
+<view style='margin: 0 20rpx;'>
+  <view class="cu-modal {{modalName=='moreaction'?'show':''}}">
+    <view class="cu-dialog bg-white" style='width:200rpx;height:35px; margin-left:3px;margin-right:3px;' bindtap="onReport">
+      <view class=" bg-white" style='width:200rpx;height:35px;'>
+        <view class=" margin-0 flex-sub  solid-left" style='width:200rpx;height:28px;margin-top:7px;'>举报</view>
+      </view>
+    </view>
+    <view class="cu-dialog bg-red" style='width:200rpx;height:35px; margin-left:3px;margin-right:3px;' wx:if="{{delete1}}" bindtap="onDelete">
+      <view class=" bg-red" style='width:200rpx;height:35px;'>
+        <view class="  flex-sub  solid-left" style='width:200rpx;height:28px;margin-top:7px;'>删除</view>
+      </view>
+    </view>
+    <view class="cu-dialog" style='width:200rpx;height:35px;margin-left:3px;margin-right:3px;' bindtap="hideModal">
+      <view style='width:200rpx;height:35px;'>
+        <view class="  flex-sub  solid-left" style='width:200rpx;height:28px;margin-top:7px;'>取消</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='view_user'>
+    <view>
+      <image class='view_user_image' src='{{post.postimgid}}' bindtap='onUser'></image>
+    </view>
+    <view style='display:flex; flex-direction: column; width:700rpx;'>
+      <view style="flex:1;">
+        <text class='view_user_name'>{{post.nickName}}</text>
+      </view>
+      <view style='display:flex; flex-direction: row;'>
+        <view>
+          <text class='view_user_date'>{{post.date}}</text>
+        </view>
+        <view>
+          <text class='view_user_date' style="font-size:smaller; margin-left:5px;">{{post.location0}} {{post.location1}}{{post.location2}}</text>
+        </view>
+      </view>
+    </view>
+    <view style='right:0px;height:30px;width:100rpx;' bindtap="showModal" data-target="moreaction">
+      <text class="cuIcon-unfold" style='font-size:20px;margin-top:3px;'></text>
+    </view>
+  </view>
+
+
+  <view class='view_detail padding-top-sm'>
+    <text>{{post.detail}}</text>
+  </view>
+  <view wx:if="{{post.type == '卡证'}}" style='height:240px;'>
+    <view style='height: 20px; margin-top:20px;margin-left:10px;font-size:large;'>姓 名:{{post.cardname}}</view>
+    <view style='height: 20px;margin-bottom:30px;margin-left:10px;font-size:large;'>卡 号:{{post.cardid}}</view>
+  </view>
+  <view class='padding-bottom-5xl'>
+    <block wx:for="{{post.imgid}}" wx:for-index='index' wx:key='' wx:for-item="item">
+      <image class='image1' src='{{item}}' mode='widthFix' data-imgid='{{index}}' catchtap="onImage"></image>
+    </block>
+  </view>
+
+</view>
+<view hidden='{{remarks==0}}' class="cu-bar bg-white tabbar border shop foot">
+  <button class="action" catchtap='reback'>
+    <view class="cuIcon-back_android">
+    </view>
+    返回
+  </button>
+  <button class="action" open-type="contact">
+    <view class="cuIcon-service">
+    </view>
+    客服
+  </button>
+  <button class="action" open-type="share">
+    <view class="cuIcon-share">
+    </view>
+    分享
+  </button>
+  <view class="bg-blue submit" catchtap='onReclaim'>联系ta</view>
+</view>
+
+<!--操作弹窗-->
+<view class="cu-modal {{modalName=='moreaction'?'show':''}}">
+  <view class="cu-dialog bg-white" style='width:200rpx;height:35px; margin-left:3px;margin-right:3px;' bindtap="onReport">
+    <view class=" bg-white" style='width:200rpx;height:35px;'>
+      <view class=" margin-0 flex-sub  solid-left" style='width:200rpx;height:28px;margin-top:7px;'>举报</view>
+    </view>
+  </view>
+  <view class="cu-dialog bg-red" style='width:200rpx;height:35px; margin-left:3px;margin-right:3px;' wx:if="{{delete1}}" bindtap="onDelete">
+    <view class=" bg-red" style='width:200rpx;height:35px;'>
+      <view class="  flex-sub  solid-left" style='width:200rpx;height:28px;margin-top:7px;'>删除</view>
+    </view>
+  </view>
+  <view class="cu-dialog" style='width:200rpx;height:35px;margin-left:3px;margin-right:3px;' bindtap="hideModal">
+    <view style='width:200rpx;height:35px;'>
+      <view class="  flex-sub  solid-left" style='width:200rpx;height:28px;margin-top:7px;'>取消</view>
+    </view>
+  </view>
+</view>
+
+<!--评论弹窗-->
+<view class="cu-modal {{remarks== 0 ?'show':''}}">
+  <view class="cu-dialog bg-white" style='width:720rpx;height:500px; margin-left:3px;margin-right:3px;'>
+    <view class=" bg-gary left flex" style='width:700rpx;height:35px;'>
+      <view style='right:0px;height:40px;width:40px;' bindtap="remarkstop" data-target="remarkstop">
+        <text class="cuIcon-refresharrow lg text-gray"></text>
+      </view>
+      <view class="left solid-left" style='width:600rpx;height:28px;margin-top:7px;'>全部{{post.comments[0]}}条评论</view>
+      <view style='right:0px;height:30px;width:30px;' bindtap="remarksclose" data-target="remarksclose">
+        <view class="cuIcon-close">
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<!--未认证用户查看详情时提示-->
+<view class="cu-modal {{modalName=='tip'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="bg-img" style="background-image: url('http://m.qpic.cn/psb?/V1440qhp31sLv2/NtlHuGmM3oyQ3xwWUAN0rqW2IYLyiUGeCD*L.VVtO30!/b/dL4AAAAAAAAA&bo=pQEPAQAAAAADB4g!&rf=viewer_4');height:200px;">
+      <view class="cu-bar justify-end text-white">
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close "></text>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  solid-left" style='height:55px;' bindtap="hideModal21">前往认证</view>
+      <view class="action margin-0 flex-sub  solid-left" style='height:55px;' bindtap="hideModal22">继续浏览</view>
+    </view>
+  </view>
+</view>

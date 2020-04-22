@@ -1,0 +1,16 @@
+/* miniprogram/pages/search/search.wxss */
+@import '/template/post-item-template/post-item-template.wxss';
+@import '/template/navigation/navigation.wxss';
+@import '/template/swiper/swiper.wxss';
+@import '/pages/message/message.wxss';
+@import '/pages/lostAndFound/found/found.wxss';
+@import '/pages/box/box.wxss';
+@import '/pages/lostAndFound/lostAndFound.wxss';
+.cu-bar {
+display: flex;
+position: relative;
+align-items: center;
+min-height: 100rpx;
+justify-content: space-between;
+margin: 0 0 5px 0;
+}

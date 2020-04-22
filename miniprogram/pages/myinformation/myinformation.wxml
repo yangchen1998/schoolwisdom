@@ -1,0 +1,158 @@
+<!--pages/information/information.wxml-->
+<cu-custom bgColor="bg-white" isBack="{{false}}">
+  <view slot="content">我的</view>
+</cu-custom>
+<view class="userinfo">
+  <button open-type="getUserInfo" bind:getuserinfo="onGotUserInfo" class="userinfo-avatar" style="background-image: url({{userInfo.avatarUrl ? userInfo.avatarUrl:'../../image/certifying.png'}})"></button>
+  <text class='userinfo-nickname'>{{userInfo.nickName?userInfo.nickName:'点击头像登录'}}</text>
+</view>
+<view class="cu-list menu">
+
+  <view class="cu-item arrow">
+    <navigator class="content" hover-class="none" url="../update/update" open-type="navigate">
+      <text class="cuIcon-news text-geay"></text>
+      <text class="text-grey">我的信息</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class="content" hover-class="none" url="../history/history" open-type="navigate">
+      <text class="cuIcon-countdown text-geay"></text>
+      <text class="text-grey">我的历史</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class="content" hover-class="none" url="../help/help" open-type="navigate">
+      <text class="cuIcon-creative text-geay"></text>
+      <text class="text-grey">使用帮助</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class="content" hover-class="none" url="../setting/setting" open-type="navigate">
+      <text class="cuIcon-settings text-geay"></text>
+      <text class="text-grey">个人设置</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class="content" hover-class="none" url="../about/about" open-type="navigate">
+      <text class="cuIcon-service text-geay"></text>
+      <text class="text-grey">关于我们</text>
+    </navigator>
+  </view>
+</view>
+<!--学生证弹窗-->
+<view class="cu-modal {{hideCard?'show':''}}" bindtap="hideCard">
+  <view class="cu-dialog">
+    <view class='student_card' bindlongtap='changeinfomation'>
+      <view class='student_card_bc1'>
+        <view class='bc1'>
+          <image class='bg_image' src='cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/透明背景2.png'></image>
+          <view class="text-white" style='margin-top: 8px;margin-left:3px; color:#white;'>东北大学</view>
+        </view>
+        <view class='bc2'>
+          <view wx:if="{{user.certification != 'yes'}}" class="cu-tag bg-red" bindtap='tocertify'>未认证</view>
+          <view wx:if="{{user.certification == 'yes'}}" class="cu-tag bg-green">已认证</view>
+        </view>
+      </view>
+      <view class='information_view' style='background-image: url("cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/background2.jpg");'>
+        <!--  <view>
+          <image class='background_image' src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/background2.jpg"></image>
+        </view> -->
+        <view class="section">
+          <view class="section__title">
+            <text>姓   名:</text>
+          </view>
+          <view style='margin-left:8px'>{{user.name}}</view>
+        </view>
+        <view class="section">
+          <view class="section__title">
+            <text>学   号:</text>
+          </view>
+          <view style='margin-left:8px'>{{user.student_id}}</view>
+        </view>
+        <view class="section section_gap">
+          <view class="section__title">
+            <text>校   区:</text>
+          </view>
+          <view style='margin-left:8px'>{{user.campus}}</view>
+        </view>
+        <view class="section ">
+          <view class="section__title">
+            <text>学   院:</text>
+          </view>
+          <view style='margin-left:8px'>{{user.college}}</view>
+        </view>
+        <view class="section">
+          <view class="section__title">
+            <text>专   业:</text>
+          </view>
+          <view style='margin-left:8px'>{{user.major}}</view>
+        </view>
+        <!-- <view class="section">
+        <view class="section__title">
+          <text>电   话:</text>
+        </view>
+        <view style='margin-left:8px'>{{user.phone}}</view>
+      </view>
+      <view class="section">
+        <view class="section__title">
+          <text>邮   箱:</text>
+        </view>
+        <view style='margin-left:8px'>{{user.email}}</view>
+      </view>
+      <view class="section">
+        <view class="section__title">
+          <text>宿   舍:</text>
+        </view>
+        <view style='margin-left:8px'> {{user.dormitory}}</view>
+      </view>
+      <view class="section">
+        <view class="section__title">
+          <text>寝   室:</text>
+        </view>
+        <view style='margin-left:8px'>{{user.roomnum}}</view>
+      </view> -->
+      </view>
+      <view view class='student_card_bc2'>
+        <view class='bc1 text-white' style='font-size:10px;'>
+          本卡片信息仅供参考 实际信息请以学生证实物为准
+        </view>
+        <view class='bc2' style='color: rgb(255, 185, 56);'>自强不息·知行合一</view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- <view style='text-align: right; margin-right:10px;'>
+<buttonbindtap='changeinfomation' class='button0' >
+    <view class='view_button' >
+      <view class='button_text_view' style='font-size:small;margin-top:4px;'>
+        修改
+      </view>
+      <view class='button_image_view'>
+        <image class='button_image' src='/image/goto.png'></image>
+      </view>
+    </view>
+  </button>
+</view> -->
+
+<!-- <view class='student_card' bindlongtap='changeinfomation' >
+    <view class='student_card_bc1'>
+      <view class='bc1'>
+        <image class='bg_image' src='cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/透明背景2.png'></image>
+        <view style='margin-top: 8px;margin-left:3px; color:rgb(250, 250, 250);'>东北大学</view>
+      </view>
+      
+    </view>
+    <view class='information_view' style='height:180px;'>
+      <view>
+        <image class='background_image' src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/background2.jpg"></image>
+      </view>
+      <view style='font-size:60px;font-family:KaiTi;margin-left:100px;height:50px;'></view>
+      <view style='font-size:60px;font-family:KaiTi;margin-left:100px;height:150px;'>学生证</view>
+    </view>
+    <view view class='student_card_bc2'>
+      <view class='bc1' style='font-size:10px;'>
+        
+      </view>
+      <view class='bc2' style='color: rgb(255, 185, 56);'>自强不息·知行合一</view>
+    </view>
+  </view>-->

@@ -1,0 +1,31 @@
+/* miniprogram/pages/setting/setting.wxss */
+.setting {
+  background-color: rgba(255, 255, 255, 0.634);
+  margin:0 5px;
+  display: flex;
+  flex-direction: row;
+  height: 80rpx;
+  align-items: center;
+  border-radius: 5%;
+  border-bottom: solid #e5e5e5 1.5px;
+}
+
+.setting-text {
+  color: rgba(0, 0, 0, 0.814);
+  margin-left: 50rpx;
+}
+
+.icon{
+  flex: 1;
+  text-align:right;
+}
+
+.text {
+  flex: 1;
+}
+.section {
+  font-size: smaller;
+  color: #aaa;
+  height: 15px;
+  margin: 20px  0 5px 20px;
+}

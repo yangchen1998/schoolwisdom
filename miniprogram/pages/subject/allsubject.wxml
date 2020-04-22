@@ -1,0 +1,92 @@
+<!--pages/subject/allsubject.wxml-->
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view class="text-bold" slot="content">我的课程</view>
+</cu-custom>
+<!-- <view class="bg-white nav" style="position:fixed;z-index:999; width:{{windowWidth}}px">
+  <view class="flex text-center">
+    <view class="cu-item flex-sub" wx:for="{{navigation}}" wx:key bindtap="navgationSelect" data-id="{{index}}">
+      <text class="{{tabnav == index?'text-red':''}}" style="height:90rpx; border-bottom:{{tabnav == index?'4rpx solid':''}};">{{item}}
+      </text>
+    </view>
+  </view>
+</view>
+<view style="height:90rpx;"></view>
+-->
+
+
+<!--添加课程-->
+<view class="cu-modal {{editCourse ?'show':''}}">
+  <view class="cu-dialog" style="margin-top: 100rpx;">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">编辑课程</view>
+      <view class="action" bindtap="hideEditCourse">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+
+    <view class="text-{{editCoursename ? 'blue' :'gray'}} ">
+      <input class="padding-left-xl padding-right-xl padding-top-2xl  bg-white" placeholder="添加课程名称" value="{{editCoursename ? editCoursename : ''}}" style="height:150rpx;" bindinput="editCoursenameInput">
+      </input>
+    </view>
+
+    <view class="text-{{editCourseroom ? 'blue' :'gray'}} ">
+      <input class="padding-left-xl padding-right-xl padding-top-2xl  bg-white" placeholder="添加上课地点" value="{{editCourseroom ? editCourseroom : ''}}" style="height:150rpx;" bindinput="editCourseroomInput">
+      </input>
+    </view>
+
+    <view>
+      <view class="cu-form-group">
+        <view class="title cu-form-group" style="padding-left:0; padding-right:0;">
+          <text class="cuIcon-calendar lg text-black padding-right-sm"> </text> 开 始 周 :
+          <picker bindchange="startPickerChange" start="1" end="25" value="{{index}}" range="{{spicker}}">
+            <view class="picker text-{{spick?'blue':'gray'}}" style="width:100rpx;">
+              {{spick?spick:'请选择'}}
+            </view>
+          </picker>
+        </view>
+        <view class="title cu-form-group" style="padding-left:0; padding-right:0;">
+          <text class="cuIcon-calendar lg text-black padding-right-sm"> </text> 结 束 周 :
+          <picker bindchange="endPickerChange" start="{{spick}}" end="25" value="{{index}}" range="{{epicker}}">
+            <view class="picker text-{{epick?'blue':'gray'}}" style="width:100rpx;">
+              {{epick?epick:'请选择'}}
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view>
+
+
+    <view>
+      <view class="cu-form-group">
+        <view class="title cu-form-group" style="padding-left:0; padding-right:0;">
+          <text class="cuIcon-calendar lg text-black padding-right-sm"> </text> 上课星期 :
+          <picker bindchange="dayPickerChange" start="{{editCourseday}}" end="星期六" value="{{week_days[editCourseday]}}" range="{{week_days}}">
+            <view class="picker text-{{editCourseday?'blue':'gray'}}" style="width:100rpx;">
+              {{editCourseday?week_days[editCourseday]:'请选择'}}
+            </view>
+          </picker>
+        </view>
+        <view class="title cu-form-group" style="padding-left:0; padding-right:0;">
+          <text class="cuIcon-calendar lg text-black padding-right-sm"> </text>上课时间:
+          <picker bindchange="timePickerChange" start="{{editCoursetime}}" end="第六节" value="{{classtimes[editCoursetime]}}" range="{{classtimes}}">
+            <view class="picker text-{{editCoursetime?'blue':'gray'}}" style="width:100rpx;">
+              {{editCoursetime?classtimes[editCoursetime]:'请选择'}}
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="padding-xl bg-white addCoursesoid text-{{strWeek ? 'blue' : 'gray'}}" bindtap="editFreeWeek">
+      {{strWeek ? strWeek: '添加无课周'}}
+    </view>
+    <view class="text-{{editCourseteacher ? 'blue' :'gray'}} ">
+      <input class="padding-left-xl padding-right-xl padding-top-2xl  bg-white" placeholder="添加上课老师" value="{{editCourseteacher ? editCourseteacher : ''}}" style="height:150rpx;" bindinput="editCourseteacherInput">
+      </input>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action text-gray" bindtap="hideEditCourse">取消</view>
+      <view class="action text-blue" bindtap="comfirmEdit">确定</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,100 @@
+<!--miniprogram/pages/setting/setting.wxml-->
+<import src='/template/navigationBar/navigationBar.wxml' />
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">个人设置</view>
+</cu-custom>
+<view class="section" style='margin: 0  0 5px 20px;'>隐私设置</view>
+<view class='setting' bindtap='switch_avatar'>
+  <view class='text'>
+    <text class='setting-text'>显示头像</text>
+  </view>
+  <view class='icon'>
+    <icon type='{{avatar_switch}}'></icon>
+  </view>
+</view>
+
+<view class='setting' bindtap='switch_nickname'>
+  <view class='text'>
+    <text class='setting-text'>显示昵称</text>
+  </view>
+  <view class='icon'>
+    <icon type='{{nickname_switch}}'></icon>
+  </view>
+</view>
+<button style='width:100%;height:40px;font-size:16px;margin-top:10px;' open-type='openSetting'>
+  查看我对本程序的授权
+</button>
+<!--
+<view class="section">首页功能</view>
+<view class='setting' bindtap='switch_calendar'>
+  <view class='text'>
+    <text class='setting-text'>校历</text>
+  </view>
+  <view class='icon'>
+    <icon type='{{calendar_switch}}'></icon>
+  </view>
+</view>
+<view class='setting' bindtap='switch_bus'>
+  <view class='text'>
+    <text class='setting-text'>校车</text>
+  </view>
+  <view class='icon'>
+    <icon type='{{bus_switch}}'></icon>
+  </view>
+</view>
+<view class='setting' bindtap='switch_phone'>
+  <view class='text'>
+    <text class='setting-text'>电话</text>
+  </view>
+  <view class='icon'>
+    <icon type='{{phone_switch}}'></icon>
+  </view>
+</view>
+<view class='setting' bindtap='switch_opentime'>
+  <view class='text'>
+    <text class='setting-text'>开放时间</text>
+  </view>
+  <view class='icon'>
+    <icon type='{{opentime_switch}}'></icon>
+  </view>
+</view>
+<view class="section">订阅消息</view>
+<view class='setting' bindtap='switch_notice'>
+  <view class='text'>
+    <text class='setting-text'>订阅通知</text>
+  </view>
+  <view class='icon'>
+    <icon type='{{notice_switch}}'></icon>
+  </view>
+</view>
+<view class='setting' bindtap='switch_activity'>
+  <view class='text'>
+    <text class='setting-text'>订阅活动</text>
+  </view>
+  <view class='icon'>
+    <icon type='{{activity_switch}}'></icon>
+  </view>
+</view>
+-->
+<view class="section">清理缓存</view>
+<view class='setting' bindlongtap='backlogout'>
+  <button style='width:100%;' hidden="{{clearStorage == 'yes'}}" bindtap='clearstorage'>
+    清除全部缓存
+  </button>
+  <button style='width:100%;' wx:if="{{logout == 'yes'}}" disabled="{{logout == 'logouting'}}">
+    已清除全部缓存
+  </button>
+  <button style='width:100%;' bindtap='clearCarpool'>
+    清除组队缓存
+  </button>
+</view>
+<view class="section">账户设置</view>
+<view class='setting' bindlongtap='backlogout'>
+  <button style='width:100%;' hidden="{{logout == 'logouting'}}" bindtap='logout'>
+    申请注销账户
+  </button>
+  <button style='width:100%;' wx:if="{{logout == 'logouting'}}" disabled="{{logout == 'logouting'}}">
+    已申请注销
+  </button>
+</view>

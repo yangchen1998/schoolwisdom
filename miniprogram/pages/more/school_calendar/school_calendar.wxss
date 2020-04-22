@@ -1,0 +1,9 @@
+/* miniprogram/pages/more/school_calendar/school_calendar.wxss */
+
+page {
+  background-color: white;
+}
+
+.image {
+  width: 100%;
+}

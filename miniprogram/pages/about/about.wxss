@@ -1,0 +1,5 @@
+/* miniprogram/pages/about/about.wxss */
+@import '/pages/information/information.wxss';
+.a{
+  align-content: 0
+}

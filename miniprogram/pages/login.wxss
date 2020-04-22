@@ -1,0 +1,39 @@
+/* miniprogram/pages/login.wxss */
+
+.login_image {
+  margin-top: 0;
+  width: 100%;
+
+}
+.account {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1px;
+}
+.account1 {
+  flex: 1;
+  text-align: right;
+  height: 100%;
+}
+
+.account2 {
+  flex: 3;
+  margin-left: 8px;
+  margin-right: 100rpx;
+  font-size: small;
+  border: solid #bab7b7 1px;
+}
+.rule {
+  font-size: small;
+  justify-content: center;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.button1 {
+  margin-top:10px;
+}
+.button2 {
+  font-size:small;
+  color:#bab7b7;
+}

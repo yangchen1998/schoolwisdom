@@ -1,0 +1,126 @@
+<!--miniprogram/pages/carpool/carpoolDetail.wxml-->
+<!--标题模块-->
+<view style='height:60px;'>
+  <view class="navigationBar bg-white adjustnavBar">
+    <view class="text-cut text-black text-center adjustnav">
+      {{carpool.origin}}
+    </view>
+    <view class="adjustnavmd">前往</view>
+    <view class="text-cut text-black text-center adjustnav">
+      {{carpool.destination}}
+    </view>
+  </view>
+</view>
+<scroll-view>
+  <!--卡片展示拼车时间模块-->
+  <view class="padding bg-white margin-top-xs shadow-warp padding-top-sm">
+    <view wx:if="{{valtime > 0}}" class="text-gray text-sm text-left adj-cardtext">距离结束仅剩
+     <text wx:if="{{valtime > 0}}" class='text-red'>{{valtime}}</text>天
+     </view>
+     <view wx:if="{{valtime <= 0}}" class="text-gray text-sm text-left adj-cardtext">已结束
+    <text  wx:if="{{valtime <= 0}}" class='text-red'>{{-valtime}}</text>天
+    </view>
+    <view class="cu-bar">
+      <view class="text-bold">{{carpool.origin}}</view>
+      <image src="/image/go.png" style="height:70px; width:70px;" mode="aspectFit"></image>
+      <view class="text-bold">{{carpool.destination}}</view>
+    </view>
+    <view class="mybar">
+      <view class="text-balck">出发日期：{{carpool.date}} </view>
+      <view class="text-balck">出发时间：{{carpool.time}}</view>
+    </view>
+    <view class="mybar-sm" style="min-height: 0; margin-top:5px;">
+      <view class="text-sm">发起人：
+        <text class="text-blue">{{carpool.creator.name}} </text>
+      </view>
+      <view class="text-sm text-gray text-right">目标人数：
+        <text class="text-red">{{carpool.people_nums}} </text> 人
+        <text class="margin-left">已有</text>
+        <text class="text-blue"> {{carpool.sharing.length+1}} </text> 人加入
+      </view>
+    </view>
+  </view>
+
+  <!--备注信息模块-->
+  <text class="text-gray text-sm padding-sm">备注信息 </text>
+  <view class="padding bg-white margin-top-xs shadow-warp">
+    <view class="cu-bar">
+      <view class="text-bold">{{carpool.notes}}</view>
+    </view>
+  </view>
+
+  <!--成员信息展示模块-->
+  <text class="text-gray text-sm padding-sm">成员信息 </text>
+  <view class="padding bg-gray margin-top-xs shadow-warp">
+    <view class="myformgroup bg-gray">
+      <view class="title text-gray">姓 名： {{carpool.creator.name}}
+        <text class="text-blue">  发起者  </text>
+      </view>
+    </view>
+    <view class="myformgroup bg-gray">
+      <view class="title text-gray">学 号： {{carpool.creator.student_id}}</view>
+    </view>
+    <view class="myformgroup bg-gray">
+      <view class="title text-gray">校 区： {{carpool.creator.campus}}</view>
+    </view>
+    <view class="myformgroup bg-gray">
+      <view class="title text-gray">专 业： {{carpool.creator.major}}</view>
+    </view>
+    <view class="myformgroup bg-gray">
+      <view class="title text-gray">不良记录共
+        <text class="text-red" catchtap="onBadrecord" data-record="{{carpool.creator.bad_record}}">{{carpool.creator.bad_record.length}} </text> 条</view>
+    </view>
+    <view class="myformgroup bg-gray">
+      <view class="title text-gray">性 别： {{carpool.creator.sex}}</view>
+    </view>
+    <view class="myformgroup bg-gray">
+      <view class="title text-gray">联系方式：
+        <text class="text-blue" catchtap="onPhone" data-phone="{{carpool.phone}}">{{carpool.phone}} </text>
+      </view>
+    </view>
+  </view>
+
+  <!--加入者信息-->
+  <block wx:for="{{carpool.sharing}}" wx:key="{{index}}">
+    <view class="padding bg-gray margin-top-xs shadow-warp">
+      <view class="myformgroup bg-gray">
+        <view class="title text-gray">姓 名： {{item.name}}
+        </view>
+      </view>
+      <view class="myformgroup bg-gray">
+        <view class="title text-gray">学 号： {{item.student_id}}</view>
+      </view>
+      <view class="myformgroup bg-gray">
+        <view class="title text-gray">校 区： {{item.campus}}</view>
+      </view>
+      <view class="myformgroup bg-gray">
+        <view class="title text-gray">专 业： {{item.major}}</view>
+      </view>
+      <view class="myformgroup bg-gray">
+        <view class="title text-gray">不良记录共
+          <text class="text-red" catchtap="onBadrecord" data-record="{{item.bad_record}}">{{item.bad_record.length}}</text>条</view>
+      </view>
+      <view class="myformgroup bg-gray">
+        <view class="title text-gray">性 别： {{item.sex}}</view>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+<view class="foot-h-5"></view>
+<!--底部tabBar模块-->
+<form bindsubmit="onAdd" bindreset="onBackPage" report-submit="true">
+  <view class="cu-bar tabbar bg-white border shop foot">
+    <button class="action bg-white" catchtap='onBackPage'>
+      <view class="cuIcon-back_android bg-white text"></view> 返回
+    </button>
+    <button class="action bg-white" open-type="contact">
+      <text class="cuIcon-service bg-white text-blue text"></text> 客服
+    </button>
+    <button class="bg-blue submit text" form-type="submit" disabled="{{end}}">我要加入</button>
+  </view>
+</form>
+<!--加入拼车弹窗-->
+<view class='cu-load load-modal' wx:if="{{loading}}">
+  <image src='/image/certifying.png' class='png' mode='aspectFit'></image>
+  <view class='gray-text'>发布中...</view>
+</view>

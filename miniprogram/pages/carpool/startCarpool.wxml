@@ -1,0 +1,105 @@
+<!--miniprogram/pages/carpool/startCarpool.wxml-->
+<view class="navigationBar bg-white" style='height:64px; z-index:999; position:fixed;'>
+  <view class="navigationBarBack" bindtap='onBackPage'>
+    <text class="cuIcon-back"></text> 返回
+  </view>
+  <view class="navigationBarText">
+    发起组队
+  </view>
+</view>
+<view style='height:64px;'>
+</view>
+<view class="text-sm text-gray bg-white" style='height:20px;text-align:center;' bindtap="showInfo">
+  {{showInfo ? '收起':'查看您将展示的个人信息'}}
+  <text class="cuIcon-{{showInfo ? 'triangleupfill' : 'triangledownfill'}} lg text-gray"></text>
+</view>
+<scroll-view>
+  <form bindsubmit="formSubmit" bindreset="onBackPage" report-submit="true">
+    <view class="myformgroup bg-gray" hidden="{{!showInfo}}">
+      <view class="title text-gray">姓 名： {{name}}</view>
+    </view>
+    <view class="myformgroup bg-gray" hidden="{{!showInfo}}">
+      <view class="title text-gray">学 号： {{student_id}}</view>
+    </view>
+    <view class="myformgroup bg-gray" hidden="{{!showInfo}}">
+      <view class="title text-gray">校 区： {{campus}}</view>
+    </view>
+    <view class="myformgroup bg-gray" hidden="{{!showInfo}}">
+      <view class="title text-gray">专 业： {{major}}</view>
+    </view>
+    <view class="myformgroup bg-gray" hidden="{{!showInfo}}">
+      <view class="title text-gray">不良记录共
+        <text class="text-red">{{bad_record.length}}</text>条</view>
+    </view>
+    <view class="myformgroup bg-gray" hidden="{{!showInfo}}">
+      <view class="title text-gray">性 别： </view>
+      <radio-group style="margin-right:320rpx;" bindchange="chooseSex">
+        <view class="cu-form-group bg-gray text-gray" style="padding-left:0;">
+          <radio class="blue" value="男" data-name="1" checked="{{sex == '男' ? 'true' : ''}}"></radio>男
+          <radio class="red margin-left-sm" value="女" checked="{{sex == '女' ? 'true' : ''}}"></radio>女
+        </view>
+      </radio-group>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">始发地：
+      </view>
+      <input class="text-blue" name="input_origin" placeholder="请输入行程的起点" bindinput="inputOrigin" />
+    </view>
+    <view class="cu-form-group">
+      <view class="title">目的地： </view>
+      <input name="input_destination" placeholder="请输入行程的终点" bindinput="inputDestination" />
+    </view>
+    <view class="cu-form-group">
+      <view class="title cu-form-group" style="padding-left:0;padding-right:0;">
+        <text class="cuIcon-calendar lg text-black padding-right-sm"></text> 出发日期:
+        <picker name="input_date" mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange">
+          <view class="picker padding-left-sm text-blue">
+            {{date}}
+          </view>
+        </picker>
+      </view>
+      <view class="title cu-form-group" style="padding-left:0; padding-right:0;">
+        <text class="cuIcon-countdown lg text-black padding-right-sm"></text> 出发时间:
+        <picker name="input_time" mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="TimeChange">
+          <view class="picker padding-left-sm text-blue">
+            {{time}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">目标人数：
+        <button class="cu-btn {{people_nums?'text-blue bg-white':'bg-blue'}}" bindtap="chooseNum">{{people_nums?people_nums+' 人':'请选择'}}</button>
+      </view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">联系方式：</view>
+      <input name="input_phone" placeholder="请输入您的联系方式"></input>
+    </view>
+    <view class="title padding-left">备注信息：</view>
+    <view class="cu-form-group" hidden="{{chooseNum != null}}">
+      <textarea name="input_notes" maxlength="-1" disabled="{{chooseNum != null}}" bindinput="textareaInput" placeholder="请在这里添加备注信息..." bindblur="checkform" style="height:8em;"></textarea>
+    </view>
+    <view style='height:64px;'>
+    </view>
+    <view class="btn-area cu-bar tabbar" style="display:flex; position: fixed;width: 100%;bottom: 0;z-index: 1024;">
+      <button class="btn1 bg-white padding-left-sm" form-type="reset" style="width: 190px;margin:2px 10px 10px 5px;">取消</button>
+      <button class="btn2 padding-right-sm {{check ? 'bg-white' : ''}}" form-type="submit" style="width: 190px;margin:2px 5px 10px 10px;">发起组队</button>
+    </view>
+  </form>
+</scroll-view>
+<!--人数选择模态弹窗-->
+<view class="cu-modal {{chooseNum== 1 ?'show':''}}" bindtap="hideNum">
+  <view class="cu-dialog">
+    <radio-group class="block" bindchange="numbers">
+      <view class="cu-list menu text-left">
+        <view class="cu-item" wx:for="{{9}}" wx:key>
+          <label class="flex justify-between align-center flex-sub">
+            <view class="flex-sub">{{index +1}}</view>
+            <radio class="round" value="{{index +1}}"></radio>
+          </label>
+        </view>
+      </view>
+    </radio-group>
+  </view>
+</view>

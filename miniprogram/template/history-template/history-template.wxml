@@ -1,0 +1,27 @@
+<template name="history">
+  <view class='history padding-top'>
+  <view class='left'>
+      <view style='display:flex;flex-diretion:row'>
+        <view class='line'>
+          <text style='color:#f0f8ff'>' '</text>
+        </view>
+      </view>
+      <view wx:if="{{status=='done'}}">
+        <icon type="success" size="13" color="#e5e5e5" style='margin-left:4px'></icon>
+      </view>
+      <view wx:elif="{{status=='doing'}}">
+        <icon type="waiting" size="13" color="##00FF00" style='margin-left:4px'></icon>
+      </view>
+      <view wx:elif="{{status=='unfinished'}}">
+        <icon type="cancel" size="14" color="red" style='margin-left:4px'></icon>
+      </view>
+      <view class='line'>
+        <text style='color:#f0f8ff'>' '</text>
+      </view>
+    </view>
+      <view class='processc right'>
+        <text>{{type}}</text>
+        <text>{{time}}</text>
+      </view>
+  </view>
+</template>

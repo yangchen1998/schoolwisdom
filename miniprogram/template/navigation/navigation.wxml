@@ -1,0 +1,22 @@
+<template name='navigation'>
+    <view class='margin2' style='height:28px;'>
+      <view class="{{interface.tap1 == 1 ?'cu-item2':'cu-item21'}}" bindtap='onTap1'>
+        <text class="{{interface.tap1 == 1 ?'cur2 margin-top-5xs':''}}">{{interface.interface1}}</text>
+      </view>
+      <view class="{{interface.tap2 == 1 ?'cu-item2':'cu-item21'}}" bindtap='onTap2'>
+        <text class="{{interface.tap2 == 1 ?'cur2 margin-top-5xs':''}}">{{interface.interface2}}</text>
+      </view>
+      <view class="{{interface.tap3 == 1 ?'cu-item2':'cu-item21'}}" bindtap='onTap3' hidden="{{interface.hide3 =='yes'}}">
+        <text  class="{{interface.tap3 == 1 ?'cur2 margin-top-5xs':''}}">{{interface.interface3}}</text>
+      </view>
+      <!-- <view class="{{interface.tap4 == 1 ?'cu-item2':'cu-item21'}}" bindtap='onTap4' hidden="{{interface.hide4 =='yes'}}">
+        <text  class="{{interface.tap4 == 1 ?'cur2 margin-top-5xs':''}}">{{interface.interface4}}</text>
+      </view>
+      <view class="{{interface.tap5 == 1 ?'cu-item2':'cu-item21'}}" bindtap='onTap5' hidden="{{interface.hide5 =='yes'}}">
+        <text  class="{{interface.tap5 == 1 ?'cur2 margin-top-5xs':''}}">{{interface.interface5}}</text>
+      </view>
+      <view class="{{interface.tap6 == 1 ?'cu-item2':'cu-item21'}}" bindtap='onTap6' hidden="{{interface.hide6 =='yes'}}">
+        <text  class="{{interface.tap6 == 1 ?'cur2 margin-top-5xs':''}}">{{interface.interface6}}</text>
+      </view> -->
+    </view>
+</template>

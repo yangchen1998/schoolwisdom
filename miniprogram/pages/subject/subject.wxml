@@ -1,0 +1,273 @@
+<!--pages/subject/subject.wxml-->
+<!--顶部自定义导航栏-->
+<view class="cu-custom" style="height:{{CustomBar}}px">
+  <view class="cu-bar fixed bg-white" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <view class="action" bindtap="cancelSearch" wx:if="{{tryfocus}}">
+      <text class="cuIcon-back"></text>
+    </view>
+    <picker bindchange="bindWeekChange" value="{{current_week-1}}" range="{{week_picker}}" range-key="{{'name'}}">
+      <view class="picker margin-left">
+        <!-- <text class="text-bold text-md">第 {{current_week}} 周</text> -->
+        <text class="text-bold text-md">{{week_picker[current_week-1].name}}</text>
+        <text class="text-sm text-gray">\n{{campus?campus:'浑南校区'}}</text>
+      </view>
+    </picker>
+    <!--  <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder=" 搜索共享课程表..." value='{{inputValue}}' confirm-type="search" bindinput="searchInput" bindfocus="tryfocus" bindblur="tryblur" bindconfirm="search" bindkeyboardheightchange="keyboardheightchange"></input>
+    </view> -->
+  </view>
+</view>
+<!--课程表内容-->
+<view class="bg-white" style='background-image: url("{{bgimage}}");background-size: 750rpx 1500rpx; position: static;'>
+
+  <!--画出课程表的横坐标轴，我们学校每周的第一天为星期日-->
+
+  <view class='top'>
+    <view class="cuIcon-settings {{setanimation? 'animation-scale-down':''}}" style="text-gray; width:60rpx;padding-left: 5rpx;font-size: 50rpx;" bindtap="settings"></view>
+    <view wx:for="{{['日','一','二','三','四','五','六']}}" class="{{index == 0 ?'top-text-left':'top-text'}}" wx:key>
+      <text class="{{currentday == index ?'text-blue':''}}">周{{item}} \n{{weekdays[index]}}日</text>
+    </view>
+  </view>
+  <!--下面是画出大小相等的表格将课程信息填入-->
+  <view scroll-y="true" class="scroll">
+    <view style="height:1306rpx;display:flex;">
+      <!--课程表的纵向坐标轴-->
+      <!--  <view style='background-color:#d2e6b3;color:#7cba23;'>  </view> -->
+      <view>
+        <view wx:for="{{[1,2,3,4,'午休',5,6,7,8,9,10,11,12]}}" class='left radius' style="{{(lesson >= index)?'background-color:#d2e6b3;color:#7cba23;': '' }}; opacity: 0.7;filter:alpha(opacity=70);" wx:key>{{item}}</view>
+      </view>
+
+
+      <!--  <view wx:for="{{[1,2,3,4,'午休',5,6.5,7,8.5,9,10.5,11,12.5]}}" wx:key>
+        <view wx:if="{{lesson == index}}" style="width:750rpx;margin-top:{{(item%2 == 0 || item%2 == 0.5 || item%2 == 1.5) ?  ((index+1)*100+(item%2)*10) : '' }}rpx;  position: absolute;border-bottom:0.5px solid lightgreen;">
+        </view>
+      </view> -->
+
+      <!--课表 -->
+      <view wx:for="{{curriculum}}" wx:key="{{index}}">
+        <view class="flex-item curriculum-item {{item.class_name ? colorArrays[index%8] : ''}} radius {{(bindItem == (index+1) && !longBind)? 'animation-fade shadow-warp' : ''}} {{(longBind && bindItem == (index+1)) ? ('shadow-warp '+ lganimation) :''}} animation-reverse {{(lesson == item.what_time) && (currentday + 1 == item.what_day)  ? 'shine_green': '' }}"
+          id='{{index}}' data-statu="open" style="margin-left:{{(item.what_day-1)*100 +5}}rpx;margin-top:{{(item.what_time-1)*100+5}}rpx;height:195rpx;" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd" bindlongpress="longTap" bindtap="showCardView">
+          <text class="smalltext">{{item.class_name}} \n {{item.class_room}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!--单门课程的信息窗口-->
+<view class="cu-modal {{coursesView ?'show':''}}" catchtap="hideCoursesView">
+  <view class="cu-dialog bg-white">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content" style="width: 680rpx;">
+        <text>今天是 {{_GMT_0880}}  第 {{current_week}} 周 {{week_days[currentday]}} </text>
+      </view>
+    </view>
+    <view class="text-black margin-left margin-right">
+      <view class="padding-right padding-left padding-bottom  bg-white addCoursesoid text-left">
+        <!-- <text>课程名称：{{currentCourse.class_name}} \n 上课教师（{{currentCourse.teacher_name}}) \n 课程周期为：{{currentCourse.start_week}} - {{currentCourse.end_week}} \n 无课周为：</text>
+        <text wx:for="{{currentCourse.free_week}}" wx:key> {{item}} </text>
+        <text> \n 上课地点为： {{currentCourse.class_room}}</text> -->
+        <text class="text-df">课程：{{currentCourse.class_name}} \n </text>
+        <text class="text-df">老师: {{currentCourse.teacher_name}} \n </text>
+        <text class="text-df">周数：{{currentCourse.start_week}} - {{currentCourse.end_week}} \n </text>
+        <text class="text-df">空课：</text>
+        <text class="text-df" wx:if="{{currentCourse.free_week}}">第</text>
+        <text class="text-df" wx:for="{{currentCourse.free_week}}" wx:key> {{item}} </text>
+        <text class="text-df" wx:if="{{currentCourse.free_week}}">周</text>
+        <text class="text-df"> \n 教室： {{currentCourse.class_room}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!--设置抽屉-->
+<view class="cu-modal drawer-modal justify-start {{setanimation ? 'show':''}}" bindtap="hideSettings">
+  <view class="cu-dialog basis-lg" style="top:{{CustomBar}}px;height:calc(100vh - {{CustomBar}}px)">
+    <view class="cu-list menu text-left">
+      <view class="cu-item arrow" wx:for="{{['所有课程','添加课程','分享课程','导入课程','更改壁纸','更改校区']}}" wx:key id="{{index}}" bindtap="doSettings">
+        <view class="content">
+          <view>{{item}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!--添加课程-->
+<view class="cu-modal {{addCourse ?'show':''}}">
+  <view class="cu-dialog" style="margin-top: 100rpx;">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">添加课程</view>
+      <view class="action" bindtap="hideAddCourse">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+
+    <view class="text-{{addCoursename ? 'blue' :'gray'}} ">
+      <input class="padding-left-xl padding-right-xl padding-top-2xl  bg-white addCoursesoid" placeholder="添加课程名称" value="{{addCoursename ? addCoursename : ''}}" style="height:150rpx;" bindinput="addCoursenameInput">
+      </input>
+    </view>
+
+    <view class="text-{{addCourseroom ? 'blue' :'gray'}} ">
+      <input class="padding-left-xl padding-right-xl padding-top-2xl  bg-white addCoursesoid" placeholder="添加上课地点" value="{{addCourseroom ? addCourseroom : ''}}" style="height:150rpx;" bindinput="addCourseroomInput">
+      </input>
+    </view>
+
+
+    <view class="addCoursesoid">
+      <view class="cu-form-group">
+        <view class="title cu-form-group" style="padding-left:0; padding-right:0;">
+          <text class="cuIcon-calendar lg text-black padding-right-sm"> </text> 开 始 周 :
+          <picker bindchange="startPickerChange" start="1" end="22" value="{{index}}" range="{{spicker}}">
+            <view class="picker text-{{spick?'blue':'gray'}}" style="width:100rpx;">
+              {{spick?spick:'请选择'}}
+            </view>
+          </picker>
+        </view>
+        <view class="title cu-form-group" style="padding-left:0; padding-right:0;">
+          <text class="cuIcon-calendar lg text-black padding-right-sm"> </text> 结 束 周 :
+          <picker bindchange="endPickerChange" start="{{spick}}" end="22" value="{{index}}" range="{{epicker}}">
+            <view class="picker text-{{epick?'blue':'gray'}}" style="width:100rpx;">
+              {{epick?epick:'请选择'}}
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="addCoursesoid">
+      <view class="cu-form-group">
+        <view class="title cu-form-group" style="padding-left:0; padding-right:0;">
+          <text class="cuIcon-calendar lg text-black padding-right-sm"> </text> 上课星期 :
+          <picker bindchange="dayPickerChange" start="{{addCourseday}}" end="星期六" value="{{week_days[addCourseday]}}" range="{{week_days}}">
+            <view class="picker text-{{addCourseday?'blue':'gray'}}" style="width:100rpx;">
+              {{addCourseday?week_days[addCourseday]:'请选择'}}
+            </view>
+          </picker>
+        </view>
+        <view class="title cu-form-group" style="padding-left:0; padding-right:0;">
+          <text class="cuIcon-calendar lg text-black padding-right-sm"> </text>上课时间:
+          <picker bindchange="timePickerChange" start="{{addCoursetime}}" end="第六节" value="{{classtimes[addCoursetime]}}" range="{{classtimes}}">
+            <view class="picker text-{{addCoursetime?'blue':'gray'}}" style="width:100rpx;">
+              {{addCoursetime?classtimes[addCoursetime]:'请选择'}}
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <!-- <view class="text-{{addCoursetime ? 'blue' :'gray'}} ">
+      <input class="padding-left-xl padding-right-xl padding-top-2xl  bg-white addCoursesoid" bindtap="addCoursetime" placeholder="添加上课时间" value="{{addCoursetime ? addCoursetime : ''}}" style="height:150rpx;" bindinput="addCoursetimeInput">
+      </input>
+    </view> -->
+
+
+
+    <view class="padding-xl bg-white addCoursesoid text-{{strWeek ? 'blue' : 'gray'}}" bindtap="addFreeWeek">
+      {{strWeek ? strWeek: '添加无课周'}}
+    </view>
+
+
+    <!--    <view class="padding-xl  bg-white addCoursesoid text-{{addCoursroom ? 'blue' :'gray'}}" bindtap="addCourseroom">
+      {{addCourseroom ? addCourseroom : '添加上课地点'}}
+    </view>
+    <view class="padding-xl  bg-white addCoursesoid text-{{addCoursetime ? 'blue' :'gray'}}" bindtap="addCoursetime">
+      {{addCoursetime ? addCoursetime : '添加上课时间'}}
+    </view> -->
+    <view class="text-{{addCourseteacher ? 'blue' :'gray'}} ">
+      <input class="padding-left-xl padding-right-xl padding-top-2xl  bg-white addCoursesoid" placeholder="添加上课老师" value="{{addCourseteacher ? addCourseteacher : ''}}" style="height:150rpx;" bindinput="addCourseteacherInput">
+      </input>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action text-gray" id="cancelAdd" bindtap="cancelAdd">取消</view>
+      <view class="action text-blue" id="confirmAdd" bindtap="confirmAdd">确定</view>
+    </view>
+  </view>
+</view>
+
+<!--添加无课周的多选框-->
+<view class="cu-modal bottom-modal {{ addFreeWeek ? 'show': ''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="action text-gray" bindtap="hideAddFreeWeek">取消</view>
+      <view class="action text-blue" bindtap="hideAddFreeWeek">确定</view>
+    </view>
+    <view class="grid col-3 padding-sm">
+      <view wx:for="{{checkbox}}" class="padding-xs " wx:key="{{index}}">
+        <button class="cu-btn lg block {{item.checked? 'bg-gray text-gray': 'line-blue'}} " data-value="{{item.name}} " bindtap="ChooseCheckbox"> {{item.name}}
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="cu-modal {{sharecourses ?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">添加课程</view>
+      <view class="action" bindtap="sharecourses">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--分享-->
+<view class="cu-modal {{sharecourses?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">分享已创建</view>
+      <view class="action" bindtap="hideSharecourses">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      {{sharecourses}}
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  solid-left" bindtap="hideSharecourses">快将分享码发送给同学吧~</view>
+    </view>
+  </view>
+</view>
+
+<!--导入课程表-->
+<view class="cu-modal {{importClass ?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">导入课程表</view>
+      <view class="action" bindtap="hideImportClass">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="text-gray">
+      <input class="padding-left-xl padding-right-xl padding-top-2xl  bg-white addCoursesoid" placeholder="在这里输入分享码" style="height:150rpx;" bindinput="inputImport">
+      </input>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action text-gray" bindtap="hideImportClass">取消</view>
+      <view class="action text-blue" bindtap="confirmImport">确定</view>
+    </view>
+  </view>
+</view>
+<!--所有课表-->
+<view class="cu-modal {{allCourses ?'show':''}}" bindtap="hideAllCourses">
+  <view class="cu-dialog" style="margin-top:{{CustomBar+5}}px;">
+    <view class="action text-right padding-right-sm padding-top-xs">
+      <text class="cuIcon-close text-red" bindtap="hideAllCourses"></text>
+    </view>
+    <view wx:for="{{all_courses}}" class="round margin-xs" wx:key="{{index}}" id="{{index}}" bindtap="singleTap" bind:longpress="longtap">
+      <view class="cu-dialog bg-white" style="width: 100%;">
+        <view class="text-black">
+          <view class="padding  bg-white text-left">
+            <text class="text-bold text-lg">{{item.class_name}} \n </text>
+            <text class="text-df">老师: {{item.teacher_name}} \n </text>
+            <text class="text-df">周数：{{item.start_week}} - {{item.end_week}} \n </text>
+            <text class="text-df">时间：{{week_days[item.what_day-1]}}      {{classtimes[item.lesson]}} \n </text>
+            <text class="text-df">无课：</text>
+            <text class="text-df" wx:if="{{item.free_week}}">第</text>
+            <text class="text-df" wx:for="{{item.free_week}}" wx:key wx:for-item="f_k"> {{f_k}} </text>
+            <text class="text-df" wx:if="{{item.free_week}}">周</text>
+            <text class="text-df"> \n 教室：{{item.class_room}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

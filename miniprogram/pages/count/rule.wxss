@@ -1,0 +1,4 @@
+/* miniprogram/pages/count/rule.wxss */
+page{
+  background-color: white;
+}

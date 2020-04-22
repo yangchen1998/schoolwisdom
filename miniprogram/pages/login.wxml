@@ -1,0 +1,41 @@
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">团队介绍</view>
+</cu-custom>
+
+<view style="height:700px;width:750rpx;background-image:url('{{imagec}}')">
+
+</view>
+
+
+
+
+<!--miniprogram/pages/login.wxml-->
+<!-- <view class='view_farther'>
+  <image class='login_image' mode='aspectFit' src='cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/login.jpg' />
+  <view hidden='{{permission == false}}'>
+    <view class='account'>
+      <view class='account1'>学号</view>
+      <view class='account2'>
+        <input value='{{student_id}}' type='number' minlength='6' maxlength='8' placeholder='体验账户：000000' bindinput='inputid' bindfocus='ontapinput1' focus="{{focus1}}" />
+      </view>
+    </view>
+    <view class='account'>
+      <view class='account1'>密码</view>
+      <view class='account2'>
+        <input value='{{password}}' password type="text" placeholder='体验密码：000000' bindinput='inputpassword' bindfocus='ontapinput2' focus="{{focus2}}" bindblur='blur2' />
+      </view>
+    </view>
+    <view class='rule' bindtap='onTaprule'>
+      <icon class='icon' type="success" size="16" hidden="{{read != 'yes'}}"></icon>
+      <icon class='icon' type="clear" size="16" hidden="{{read != 'not'}}"></icon>《用户许可协议》
+    </view>
+    <view class=''>
+      <button bindtap='{{cansubmit1}}' class='button1'>绑定</button>
+    </view>
+    <view>
+      <button bindtap='{{cansubmit2}}' class='button2'>游客模式</button>
+    </view>
+  </view>
+  <button bindtap='refurbish' hidden='{{permission != false}}' style='background-color: #4d4bec;'>重新加载</button>
+</view> -->

@@ -1,0 +1,285 @@
+<!--miniprogram/pages/release/releasechooice.wxml-->
+<!---->
+<!----------------选择发布的类型----------------->
+<view class="cu-modal {{modaltype == 'choosetype' ? 'show':''}}" bindtap="hideModaltype">
+  <view class="cu-dialog">
+    <view class="cu-list grid col-2 no-border">
+      <block wx:for="{{iconList}}" wx:key='' data-icon='{{item.name}}'>
+        <view class="cu-item" catchtap='pick{{item.value}}' data-name='{{item.name}}'>
+          <view class="cuIcon-{{item.icon}} text-{{item.color}}">
+          </view>
+          <text>{{item.name}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<!----------------顶部导航栏---------------->
+<view style='height:60px;' hidden="{{modalName}}">
+  <view class="navigationBar bg-white" style='height:60px; z-index:999; position:fixed;'>
+    <view class="navigationBarBack">
+    </view>
+    <view class="navigationBarText text-black" bindtap='chooseClass'>
+      {{class1}}
+      <text class="cuIcon-triangledownfill" style='background-color: rgba(176, 175, 175, 0.131);'></text>
+    </view>
+  </view>
+</view>
+
+<!----------------主窗口模块------------------>
+<!--       ------    表单内容 ---------     -->
+<form name="form" bindsubmit="onRelease" bindreset="onBackPage" report-submit="true" hidden="{{modalName}}">
+  <view class="cu-form-group">
+    <input placeholder="加个标题会更好哦~" name="title" bindinput='titleinput' />
+  </view>
+  <view wx:if="{{class1 == '失物招领' || class1 == '寻物启事'}}" class="cu-form-group">
+    <view class="title">
+      <text class="cuIcon-tagfill text-gray margin-right-xs"></text>物品类型</view>
+    <picker name="type" bindchange="bindPickerChange" value="{{typeid}}" range="{{type}}">
+      <view wx:if="{{picktype != 1}}" class="picker text-gray">请选择</view>
+      <view wx:if="{{picktype == 1}}" class="picker">{{type[typeid]}}</view>
+    </picker>
+  </view>
+
+  <view class="cu-form-group" hidden="{{modaltype}}">
+    <textarea style='height:200px;' maxlength="-1" bindinput="textareaAInput" placeholder="在这里详细描述物品信息..." name="detail" bindinput='input' />
+  </view>
+  <!----------  添加照片   --------->
+  <view class="cu-form-group padding-top">
+    <view class="grid col-4 grid-square flex-sub radius">
+      <view class="bg-img" wx:for="{{tempFilePaths}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{tempFilePaths[index]}}">
+        <image src='{{tempFilePaths[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="chooseimage" wx:if="{{tempFilePaths.length<9}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+
+   <view wx:if="{{class1 != '失物招领' && class1 != '寻物启事'}}" class="cu-form-group" bindtap='addtopic'>
+    <view class="title text-gray" hidden='{{topic}}'>
+      <text class="cuIcon-tagfill text-gray margin-right-xs"></text>参与话题</view>
+    <view class="text-gray text-right text-xs" hidden='{{topic}}'>
+      选择合适的话题会有更多的互动喔~
+      <text class="cuIcon-right text-gray margin-right-xs"></text>
+    </view>
+    <view class="title text-blue" hidden='{{!topic}}'>
+      <text class="cuIcon-tagfill text-blue margin-right-xs"></text>{{topic}}</view>
+  </view>
+
+  <view class="cu-form-group" bindtap='addlocation'>
+    <view class="title text-gray" hidden='{{location0}}'>
+      <text class="cuIcon-locationfill text-gray margin-right-xs"></text>添加地点</view>
+    <view class="text-gray text-right text-xs" hidden='{{location0}}'>
+      <text class="cuIcon-right text-gray margin-right-xs"></text>
+    </view>
+    <view class="title text-blue" hidden='{{!location0}}'>
+      <text class="cuIcon-locationfill text-blue margin-right-xs"></text>{{location0}} {{location1}} {{location2}}</view>
+  </view>
+  <view wx:if="{{class1 == '失物招领' || class1 == '寻物启事'}}" class="cu-form-group">
+    <view class="title">
+      <text class="cuIcon-dianhua text-gray margin-right-xs"></text>联系方式</view>
+    <input name="contact" placeholder="要记得留下您的联系方式喔~" bindinput='input_phone' />
+  </view>
+  <view class="cu-form-group">
+    <view class="title"></view>
+  </view>
+
+  <!----    卡证类信息填写弹窗-->
+  <view class="cu-modal {{ modaltype=='pickcard' ? 'show':''}}" style="position:fixed;">
+    <view class="cu-dialog bg-white" style="width:{{windowWidth}}px;height:{{windowHeight}}px;">
+      <view style='height:60px;'>
+        <view class="navigationBar bg-white" style='height:60px; z-index:999; position:fixed;'>
+          <button class="cu-btn bg-orange round shadow-blur" style='margin-left:10rpx;margin-top:25px;' bindtap="checktype">确认</button>
+          <view class="navigationBarText text-cut text-df text-black ">
+            完善卡证信息
+          </view>
+        </view>
+      </view>
+      <view class="cu-form-group">
+        <view class="title">当前选择物品类型</view>
+        <picker name="type" bindchange="bindPickerChange" value="{{typeid}}" range="{{type}}">
+          <view class="picker text-black">{{type[typeid]}}</view>
+        </picker>
+      </view>
+      <view class="cu-form-group" style='min-height:35px;'>
+        <view class="title text-black" style='font-size:12px;'>若为学生证请填写学生证信息</view>
+      </view>
+      <view class="cu-form-group">
+        <view class="title text-black">姓名</view>
+        <input class='text-left' name='cardname' placeholder="若为学生证请输入姓名" type='text'></input>
+      </view>
+      <view class="cu-form-group">
+        <view class="title text-black">学号</view>
+        <input class='text-left' name='cardid' placeholder="若为学生证请输入学号" type='number' maxlength='8' bindinput='inputstuid' bindblur='checkstuid'></input>
+      </view>
+      <view class="cu-form-group" style='min-height:35px;'>
+        <view class='text-left text-black title' style='font-size:12px;'>若为其它类型的卡证请填写卡号信息</view>
+      </view>
+      <view class="cu-form-group">
+        <view class="title text-black">姓名</view>
+        <input class='text-left' name='student_name' placeholder="若没有姓名则不填" type='text'></input>
+      </view>
+      <view class="cu-form-group">
+        <view class="title text-black">卡号</view>
+        <input class='text-left' name='student_id' placeholder="若为身份证请输入后六位" bindinput='inputstuid'></input>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="cu-bar bg-white tabbar myfoot">
+    <button class="cu-btn bg-gray round shadow-blur text-gray" style='margin-left:60rpx;' form-type="reset">
+      <text class="cuIcon-delete text-gray"></text>取消</button>
+    <button class="cu-btn bg-orange round shadow-blur " style='margin-right:30rpx; width:300rpx;' form-type="submit">立即发布</button>
+  </view>
+</form>
+
+<!--选择发布通知的时候才会显示-->
+<!-- <view wx:if="{{identity == 'administrator'}}" hidden="{{mold != 'post_notice'}}">
+    <form name="form2" bindsubmit="formSubmit2" bindreset="formReset2" report-submit="true">
+      <view class="picker-view">
+        <view class='view_type'>标题</view>
+      </view>
+      <input name="notice_title" placeholder='输入标题' />
+      <view>范围</view>
+      <radio-group name="scope1" class="radio-group" bindchange="radioChange">
+        <label clas s="radio" wx:for="{{scope}}" wx:key="{{scope.name}}">
+          <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+        </label>
+      </radio-group>
+      <checkbox-group name="scope2" bindchange="checkboxChange1" hidden="{{scopec != '南湖校区' }}">
+        <label class="checkbox" wx:for="{{scope_nanhu}}" wx:key="{{scope.name}}">
+          <checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+        </label>
+      </checkbox-group>
+      <checkbox-group name="scope3" bindchange="checkboxChange2" hidden="{{scopec != '浑南校区' }}">
+        <label class="checkbox" wx:for="{{scope_hunan}}" wx:key="{{scope.name}}">
+          <checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+        </label>
+      </checkbox-group>
+
+      <view>内容</view>
+      <view class="cu-form-group margin-top">
+        <textarea name="textarea2" maxlength="-1" value="{{text}}" bindinput="textareaAInput" placeholder="多行文本输入框"></textarea>
+      </view>
+      <view>上传照片</view>
+      <view wx:for="{{tempFilePaths2}}" wx:key="">
+        <image src='{{item}}' mode='aspectFit' hidden='{{!tempFilePaths2}}' />
+      </view>
+      <button bindtap='chooseImage2'>选择照片</button>
+      <view class='tapchoice'>
+        <button type='warn' class='button' form-type="reset">取消</button>
+        <button type='{{primary}}' disabled="{{post_upload !='done'}}" class='button' form-type="submit">发布</button>
+      </view>
+    </form>
+  </view>
+</view> -->
+
+<!--没有认证时，不可以发布消息-->
+<!-- <view wx:if="{{certification !='yes'}}" class='view_farther'>
+  <view class='certifying_view'>
+    <view>
+      <image class='certifying_image' src='/image/certifying.png'></image>
+    </view>
+    <view wx:if="{{certification == 'no'}}">
+      <view>
+        <view>未进行在校生认证无法使用此功能</view>
+      </view>
+      <view>
+        <button bindtap='certifying'>
+          <view class='view_button'>
+            <view>
+              前往认证
+            </view>
+            <view class='button_image_view'>
+              <image class='button_image' src='/image/goto.png'></image>
+            </view>
+          </view>
+        </button>
+      </view>
+    </view>
+    <view wx:elif="{{certification == 'certifying'}}">
+      正在认证中，暂时无法使用此功能
+    </view>
+  </view>-->
+
+<!----------------没有认证时提示前往认证------------------->
+<view class="cu-modal {{modalName=='Image'?'show':''}}" bindtap="hideModal1">
+  <view class="cu-dialog">
+    <view class="bg-img" style="background-image: url('http://m.qpic.cn/psb?/V1440qhp31sLv2/Y*7gILX4gwLyW7f4bdStyWRApTecvksrgDS2R4UGAfk!/b/dIQAAAAAAAAA&bo=yQHXAAAAAAADFy0!&rf=viewer_4');height:200px;">
+      <view class="cu-bar justify-end text-white">
+        <view class="action" bindtap="hideModal1">
+          <text class="cuIcon-close "></text>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  solid-left" style='height:55px;' bindtap="hideModal21">前往认证</view>
+      <view class="action margin-0 flex-sub  solid-left" style='height:55px;' bindtap="hideModal22">我知道了</view>
+    </view>
+  </view>
+</view>
+
+<!----    话题参与弹窗-->
+<view class="cu-modal {{modalName=='addtopic' ? 'show' : ''}}">
+  <view class="cu-dialog bg-white" style='width:750rpx;' style='width:{{windowWidth}}px;height:{{windowHeight}}px;'>
+    <view class=' navigation bg-white cu-bar padding-top-lg' style='height:62px; position:fixed;'>
+      <view class="search-form round">
+        <text class="cuIcon-search"></text>
+        <input class='text-left' type="text" placeholder="搜索话题" confirm-type="search" bindconfirm="searchTopic"></input>
+      </view>
+      <view style='width:190rpx'></view>
+    </view>
+    <view style='height:62px;'></view>
+    <view class="cu-form-group" style='min-height:38px;' data-name='1' bindtap='choosetopic'>
+      <view class="title">不参与任何话题</view>
+    </view>
+    <block wx:for='{{topicList}}' wx:for-item='item' wx:key='time'>
+      <view class="cu-form-group" style='min-height:38px;' data-name='{{item.name}}' bindtap='choosetopic'>
+        <view class="title text-black">#{{item.name}}
+          <text class="cuIcon-friendfamous bg-gray text-gray" style='font-size:12px;'>{{item.numbers}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<!----    选择地点弹窗-->
+<view wx:if="{{modalName == 'addlocation'}}" class="{{modalName == 'addlocation' ? 'show' : ''}}" style='width:{{windowWidth}}px;height:{{windowHeight}}px;'>
+  <view class=" bg-white" style='width:{{windowWidth}}px;height:{{windowHeight}}px;'>
+    <view class=' navigation bg-white cu-bar padding-top-lg' style='height:62px;'>
+      <view class="search-form round">
+        <text class="cuIcon-search"></text>
+        <input class='text-left' type="text" placeholder="搜索地点" confirm-type="search" bindinput="searchLocation" bindconfirm="searchLocation"></input>
+      </view>
+      <view style='width:190rpx'></view>
+    </view>
+    <view style='height:62px;'></view>
+    <block wx:for='{{locationList}}' wx:for-item='item' wx:key='time'>
+      <view wx:if="{{item.isShow}}" class="cu-form-group" style='min-height:38px;' data-location0='{{item.location0}}' data-location1='{{item.location1}}' data-location2='{{item.location2}}' bindtap='chooselocation'>
+        <view class="title text-black">{{item.location0}} {{item.location1}} {{item.location2}}</view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<!----上传弹窗---->
+<view class='cu-load load-modal' wx:if="{{updata}}">
+  <image src='/image/certifying.png' class='png' mode='aspectFit'></image>
+  <view class='gray-text'>发布中...</view>
+</view>
+
+<!---找到学生证弹窗-->
+<view class="cu-modal {{ modalName == 'foundcard' ?'show':''}}">
+  <view class="cu-dialog">
+    <view class="bg-img" style="background-image: url('https://ossweb-img.qq.com/images/lol/web201310/skin/big91012.jpg');height:200px;">
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  solid-left" bindtap="hideFoundcard">我知道了</view>
+      <view class="action margin-0 flex-sub  solid-left" bindtap="toDetail">前往认领</view>
+    </view>
+  </view>
+</view>

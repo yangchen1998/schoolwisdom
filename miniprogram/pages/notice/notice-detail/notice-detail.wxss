@@ -1,0 +1,38 @@
+/* pages/notice/notice-detail/notice-detail.wxss */
+@import '/pages/message/message.wxss';
+@import '/pages/lostAndFound/detail/detail.wxss';
+
+.view_title {
+  margin: 5px 0;
+  height: 8px;
+}
+.text_title {
+  margin: 3px 0;
+  font-size: large;
+  text-align: center;
+}
+
+.view_poster {
+   margin-top: 0;
+  height: 30px
+}
+
+.view_poster_name {
+  line-height: 50px;
+  color: #aaa;
+}
+
+.view_poster_text {
+  font-size: small;
+  line-height: 50px;
+}
+
+.view_poster_date {
+  line-height: 50px;
+  font-size: small;
+  color: #aaa;
+}
+
+.view_notice_detail {
+  margin-top: 10px;
+}

@@ -1,0 +1,28 @@
+<!--miniprogram/pages/about/about.wxml-->
+<import src='/template/navigationBar/navigationBar.wxml' />
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">关于</view>
+</cu-custom>
+<view class="userinfo">
+  <view class='padding-sm'>
+    <image style='height:65px;width:65px;border-radius:50%;' src='cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o-1254418089/postimage/post_notice/2019-06-20/20时14分48秒0.jpg' />
+  </view>
+  <text>校园智多星</text>
+  <text style='font-size:small;color:gray;margin-top:5px;'>Version 8.3.0</text>
+</view>
+<view class="userinfo" style='margin-top:35px;'>
+  <button class="cu-btn round lg" catchtap='ongroup'>团队介绍</button>
+  <button class="cu-btn round lg" open-type='contact'>联系客服</button>
+  <button class="cu-btn round lg" open-type='feedback'>意见反馈</button>
+  <button class="cu-btn round lg" catchtap='onupdate'>更新日志</button>
+  <button class="cu-btn round lg" catchtap='onlicense'>
+    <text style='font-size:small;color:blue;'>《用户许可及服务协议》</text>
+  </button>
+  <button class="cu-btn round lg" catchtap='onmanagement'>
+    <text style='font-size:small;color:blue;'>《用户规范管理条例》</text>
+  </button>
+  <button class="cu-btn round lg" catchtap='onprivacy'>
+    <text style='font-size:small;color:blue;'>《隐私协议》</text>
+  </button>
+</view>

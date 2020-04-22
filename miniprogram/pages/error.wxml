@@ -1,0 +1,25 @@
+<!--miniprogram/pages/prelogin.wxml-->
+<!-- 如果是无效用户的弹窗-->
+<view class="cu-modal {{modalName=='Image'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="bg-img" style="background-image: url('http://m.qpic.cn/psb?/V1440qhp31sLv2/Y*7gILX4gwLyW7f4bdStyWRApTecvksrgDS2R4UGAfk!/b/dIQAAAAAAAAA&bo=yQHXAAAAAAADFy0!&rf=viewer_4');height:200px;">
+      <view class="cu-bar justify-end text-white">
+        <view class="action" bindtap="hideModal1">
+          <text class="cuIcon-close "></text>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  solid-left" style='height:55px;' bindtap="hideModal22">我知道了</view>
+    </view>
+  </view>
+</view>
+<!--应该展示无法登录的原因类似-->
+<view class='view_farther'>
+  <view class='certifying_view'>
+    <view>
+      <image class='certifying_image' src='/image/certifying.png'></image>
+    </view>
+    账户状态异常无法进入小程序
+  </view>
+</view>

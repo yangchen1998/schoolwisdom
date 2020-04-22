@@ -1,0 +1,81 @@
+<!--miniprogram/pages/process/process.wxml-->
+<view class='processc_view' hidden="{{done1 == 'yes'}}">
+  <text>报修</text>
+  <view class='process'>
+    <view class='processc'>寻找维修人员</view>
+    <view class='processc'>维修处理中</view>
+    <view class='processc'>已处理完毕</view>
+  </view>
+
+  <view class='process'>
+    <view class='processcc'>
+      <icon type="{{processt1}}" size="13" color="{{color1}}" style='margin-top:4px'></icon>
+      <view class='line' style=' background-color: {{backcolor1}}'></view>
+    </view>
+    <view class='processcc'>
+      <icon type="{{processt2}}" size="13" color="{{color2}}" style='margin-top:4px'></icon>
+      <view class='line' style=' background-color: {{backcolor2}}'></view>
+    </view>
+    <view class='processcc'>
+      <icon type="{{processt3}}" size="13" color="{{color3}}" style='margin-top:4px'></icon>
+      <view class='line' style=' background-color: {{backcolor3}}'></view>
+    </view>
+  </view>
+  <view class='button_view'>
+    <button class='finish_button' size='mini' style='margin: 0 6px;' bindtap='help'>求助</button>
+    <button class='finish_button' type='warn' size='mini' style='margin: 0 6px;' bindtap='finish1'>结束</button>
+  </view>
+</view>
+
+<view class='processc_view' hidden="{{done2 == 'yes'}}">
+  <text>招领</text>
+  <view class='process'>
+    <view class='processc'>已发布</view>
+    <view class='processc'>招领中</view>
+    <view class='processc'>完成</view>
+  </view>
+  <view class='process'>
+    <view class='processcc'>
+      <icon type="{{processt1}}" size="13" color="{{color1}}" style='margin-top:4px'></icon>
+      <view class='line' style=' background-color: {{backcolor1}}'></view>
+    </view>
+    <view class='processcc'>
+      <icon type="{{processt2}}" size="13" color="{{color2}}" style='margin-top:4px'></icon>
+      <view class='line' style=' background-color: {{backcolor2}}'></view>
+    </view>
+    <view class='processcc'>
+      <icon type="{{processt3}}" size="13" color="{{color3}}" style='margin-top:4px'></icon>
+      <view class='line' style=' background-color: {{backcolor3}}'></view>
+    </view>
+  </view>
+  <view class='button_view'>
+    <button class='finish_button' size='mini' style='margin: 0 6px;' bindtap='help'>求助</button>
+    <button class='finish_button' type='warn' size='mini' style='margin: 0 6px;' bindtap='finish2'>结束</button>
+  </view>
+</view>
+<view class='processc_view' hidden="{{done3 == 'yes'}}">
+  <text>寻物</text>
+  <view class='process'>
+    <view class='processc'>已发布</view>
+    <view class='processc'>寻找中</view>
+    <view class='processc'>完成</view>
+  </view>
+  <view class='process'>
+    <view class='processcc'>
+      <icon type="{{processt1}}" size="13" color="{{color1}}" style='margin-top:4px'></icon>
+      <view class='line' style=' background-color: {{backcolor1}}'></view>
+    </view>
+    <view class='processcc'>
+      <icon type="{{processt2}}" size="13" color="{{color2}}" style='margin-top:4px'></icon>
+      <view class='line' style=' background-color: {{backcolor2}}'></view>
+    </view>
+    <view class='processcc'>
+      <icon type="{{processt3}}" size="13" color="{{color3}}" style='margin-top:4px'></icon>
+      <view class='line' style=' background-color: {{backcolor3}}'></view>
+    </view>
+  </view>
+  <view class='button_view'>
+    <button class='finish_button' size='mini' style='margin: 0 6px;' bindtap='help'>求助</button>
+    <button class='finish_button' type='warn' size='mini' style='margin: 0 6px;' bindtap='finish3'>结束</button>
+  </view>
+</view>

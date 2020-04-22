@@ -1,0 +1,35 @@
+<template name='postItem'>
+  <view class="cu-card case radius shadow shadow-lg">
+    <view class="cu-item" style='margin:10rpx 0 10rpx 0;'>
+      <view class="text-left padding-xs flex">
+        <view class="text-cut text-lg  padding-top-xs flex-treble">{{title}}</view>
+        <view wx:if="{{class1=='寻物'}}" class="text-gray text-right text-sm padding-top-xs">寻物启事</view>
+        <view wx:if="{{class1=='招领'}}" class="text-gray text-right text-sm padding-top-xs">失物招领</view>
+        <view wx:if="{{class1=='通知'}}" class="text-gray text-right text-sm padding-top-xs">学校通知</view>
+        <view wx:if="{{class1=='活动'}}" class="text-gray text-right text-sm padding-top-xs">活动推广</view>
+        <view wx:if="{{class1=='提问'}}" class="text-gray text-right text-sm padding-top-xs">求助信息</view>
+        <view wx:if="{{class1=='经验'}}" class="text-gray text-right text-sm padding-top-xs">经验分享</view>
+      </view>
+      <view class="cu-list menu-avatar">
+        <view class='post-discoverer-date'>
+          <image class='post-discoverer' src="{{postimgid}}" lazy-load='ture'></image>
+          <view class="text-sm date_l text-gray">{{nickName}}</view>
+        </view>
+      </view>
+      <text wx:if="{{type!='卡证'}}" class="text-cut padding-left-xs text-df">{{detail}}</text>
+      <text wx:if="{{type=='卡证'}}" class="text-cut padding-left-xs text-df">姓名：{{cardname}}</text>
+      <text wx:if="{{type=='卡证'}}" class="text-cut padding-left-xs text-df">卡号：{{cardid}}</text>
+      <view class='image' datas-id="{{index}}">
+        <image data-idn='{{_id}}' wx:if="{{type!='卡证'&&imgid!='0'}}" src="{{imgid}}" bindload='fitimage' lazy-load='ture'></image>
+        <view class="text-gray text-sm text-right padding-xs flex">
+          <view class='postd flex-treble'>
+            <text class='post-date'>{{date}}</text>
+            <view class='post-location'> {{location0}}{{location1}}{{location2}}</view>
+          </view>
+          <text class="cuIcon-attentionfill margin-lr-xs"></text> {{viewers}}
+          <text class="cuIcon-messagefill margin-lr-xs"></text> {{comments}}
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

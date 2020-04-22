@@ -1,0 +1,15 @@
+<!--miniprogram/more/more.wxml-->
+<view class='feature'>
+<view class='feature1'>
+  <view class='feature2' bindtap='tap1'>校历</view>
+  <view class='feature2' bindtap='tap2'>校车</view>
+</view>
+<view class='feature1'>
+  <view class='feature2' bindtap='tap2'>课程表</view>
+  <view class='feature2' bindtap='tap2'>电话簿</view>
+</view>
+<view class='feature1'>
+  <view class='feature2' bindtap='tap2'>开放时间</view>
+  <view class='feature2' bindtap='tap2'>工作安排</view>
+</view>
+</view>

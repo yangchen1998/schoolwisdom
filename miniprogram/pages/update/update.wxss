@@ -1,0 +1,23 @@
+/* miniprogram/pages/update/update.wxss */
+@import '/pages/myinformation/myinformation.wxss';
+
+.input {
+  width: 600rpx;
+  margin-left: 5px;
+}
+
+.combottom {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.userinfo-information {
+  background-color: rgba(255, 255, 255, 0.634);
+  display: flex;
+  flex-direction: row;
+  height: 80rpx;
+  align-items: center;
+  border-radius: 5%;
+  margin: 10px 20px;
+}

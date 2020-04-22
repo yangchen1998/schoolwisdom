@@ -1,0 +1,93 @@
+<!--pages/lostAndFound/Found/found.wxml-->
+<import src='/template/post-item-template/post-item-template.wxml' />
+
+<view style='margin: 0 20rpx;'>
+
+  <view class="picker-view">
+    <picker mode="date" value="{{date}}" start="{{time}}" end="2020-12-30" bindchange="bindDateChange">
+      <view class='gotodate'>
+        <view class='goto' style='magin-bottom:0px'>
+          <text style='magin-bottom:0px;color:rgb(194, 199, 204);'>跳转指定日期</text>
+        </view>
+        <view class="date">{{date}}</view>
+        <view style='flex:1;'></view>
+      </view>
+    </picker>
+  </view>
+
+  <view class='margin2'>
+    <block wx:for="{{tabs}}" wx:key="*this">
+      <view id="{{index}}" class="navbar__item" bindtap="tabClick">
+        <view class='margin22'>{{item}}</view>
+      </view>
+    </block>
+  </view>
+  <view class='slider'>
+    <view class="sliderIndex" style='transform: translateX({{sliderOffset}}px);'></view>
+  </view>
+  <view class='search'>
+    <input class='search_text' placeholder='如：一号楼' bindinput='oninput' bindfocus='prompt'></input>
+    <view style='margin-right:5px; width:50px;' bindtap='onsearch'>
+      <icon type="search" size="20"></icon>
+    </view>
+  </view>
+</view>
+<view>
+  <view class="content" hidden="{{activeIndex != 0}}">
+    <block wx:for='{{postList}}' wx:for-item='item' wx:key='_id'>
+      <view catchtap='onPostTap' data-post='{{item}}'>
+        <template is='postItem' data='{{...item}}' />
+      </view>
+    </block>
+  </view>
+  <view class="content" hidden="{{activeIndex != 1}}">
+    <block wx:for='{{postList}}' wx:for-item='item' wx:key='_id'>
+      <view catchtap='onPostTap' data-post='{{item}}'>
+        <template is='postItem' data='{{...item}}' />
+      </view>
+    </block>
+  </view>
+  <view class="content" hidden="{{activeIndex != 2}}">
+    <block wx:for='{{postList}}' wx:for-item='item' wx:key='_id'>
+      <view catchtap='onPostTap' data-post='{{item}}'>
+        <template is='postItem' data='{{...item}}' />
+      </view>
+    </block>
+  </view>
+  <view class="content" hidden="{{activeIndex != 3}}">
+    <block wx:for='{{postList}}' wx:for-item='item' wx:key='_id'>
+      <view catchtap='onPostTap' data-post='{{item}}'>
+        <template is='postItem' data='{{...item}}' />
+      </view>
+    </block>
+  </view>
+  <view class="content" hidden="{{activeIndex != 4}}">
+    <block wx:for='{{postList}}' wx:for-item='item' wx:key='_id'>
+      <view catchtap='onPostTap' data-post='{{item}}'>
+        <template is='postItem' data='{{...item}}' />
+      </view>
+    </block>
+  </view>
+  <view class="content" hidden="{{activeIndex != 5}}">
+    <block wx:for='{{postList}}' wx:for-item='item' wx:key='_id'>
+      <view catchtap='onPostTap' data-post='{{item}}'>
+        <template is='postItem' data='{{...item}}' />
+      </view>
+    </block>
+  </view>
+  <view class="content" hidden="{{activeIndex != 6}}">
+    <block wx:for='{{postList}}' wx:for-item='item' wx:key='_id'>
+      <view catchtap='onPostTap' data-post='{{item}}'>
+        <template is='postItem' data='{{...item}}' />
+      </view>
+    </block>
+  </view>
+  <view class="content" hidden="{{activeIndex != 7}}">
+    <block wx:for='{{postList}}' wx:for-item='item' wx:key='_id'>
+      <view catchtap='onPostTap' data-post='{{item}}'>
+        <template is='postItem' data='{{...item}}' />
+      </view>
+    </block>
+  </view>
+  <image wx:if="{{backtop==1}}" class='backtop' src='/image/top.png' bindtap='onBacktop'></image>
+</view>

@@ -1,0 +1,136 @@
+<!--miniprogram/pages/count/count.wxml-->
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">绩点模拟计算器</view>
+</cu-custom>
+<view class="bg-white" hidden="{{announcement}}">
+  <text class="text-black text-bold text-lg bg-white">严正声明:</text>
+  <text class="text-black text-lg bg-white">本计算器仅为模拟计算器，相关计算公式来自《东北大学本科生学分绩点实施细则（东大教字〔2018〕106号）》，如果计算结果与教务处提供结果有出入，请以教务处结果为准。严禁将此计算结果用于评奖评优、保研等任何材料证明，如因违规使用模拟结果产生不良后果，将由违规使用者本人自行承担全部责任。</text>
+  <button class="text-sm text-cut" bindtap="onRule">相关链接：
+    <text class="text-blue">《东北大学本科生学分绩点实施细则（东大教字〔2018〕106号）》</text>
+  </button>
+</view>
+<view class="text-sm text-gray bg-white" style='height:20px;text-align:center;' bindtap="announcement">
+  {{!announcement ? '收起声明':'查看声明'}}
+  <text class="cuIcon-{{!announcement ? 'triangleupfill' : 'triangledownfill'}} lg text-gray"></text>
+</view>
+<radio-group bindchange="radiochange" class="myradio">
+  <radio class="blue radio" checked="{{index == 0 ? 'true' :''}}" value="0"></radio>
+  <text bindtap="on" data-id="0">总课程</text>
+  <radio class="blue radio margin-left-sm" checked="{{index == 1 ? 'true':''}}" value="1"></radio>
+  <text bindtap="on" data-id="1">课程平均</text>
+  <radio class="blue radio margin-left-sm" checked="{{index == 2 ? 'true' :''}}" value="2"></radio>
+  <text bindtap="on" data-id="2">课程单次</text>
+  <!--  <radio class="blue radio margin-left-sm" checked="{{index == 3 ? 'true' :''}}" value="3"></radio>
+  <text bindtap="on" data-id="3">模拟绩点</text> -->
+</radio-group>
+<!--总课程平均绩点-->
+<view hidden="{{index != 0}}">
+  <text class="margin-top-sm margin-left text-xl">初始绩点：</text>
+  <input class="text-xl margin-left text-blue" bindinput="base" value="{{base}}" confirm-type="done" type="digit" bindblur="baseblur"></input>
+  <text class="margin-top-sm margin-left text-xl">已修学分：</text>
+  <input class="text-xl margin-left text-blue" bindinput="baseg" value="{{baseg}}" confirm-type="done" type="number"></input>
+  <view wx:for="{{allSubjects}}" class="text-xl" wx:key="">
+    <text class="margin-top-sm margin-left">第{{index +1}}门考试成绩：</text>
+    <input class="text-xl margin-left text-blue" bindinput="all" data-id="{{index}}" placeholder="请输入百分制成绩" confirm-type="done" type="digit" value="{{item.score}}"></input>
+    <text class="margin-top-sm margin-left" style="flex:1;" decode="{{true}}">第{{index +1}}门考试学分：</text>
+    <input class="text-lg margin-left text-orange" style="flex:1;" bindinput="allg" data-id="{{index}}" placeholder="请输入学分" confirm-type="done" value="{{item.credit}}" type="digit"></input>
+  </view>
+  <view class="myradio">
+    <text wx:if="{{allSubjects.length > 1}}" class="cuIcon-move text-gray text-bold margin-right" style="font-size: 55rpx;" bindtap="allMove"></text>
+    <text class="cuIcon-add text-gray text-bold margin-left" style="font-size: 60rpx;" bindtap="allAdd"></text>
+  </view>
+  <view class="text-xl" style="display:flex;flex-diretion:row;">
+    <text decode="{{true}}"> \n &emsp;总平均绩点：&emsp;</text>
+    <text class="text-blue" decode="{{true}}"> \n &emsp;{{allgpa}}</text>
+  </view>
+  <button class="bg-gradual-green cu-btn block round margin margin-left-xl" bindtap="allCount">
+    <text class="text-lg">模拟计算绩点</text>
+  </button>
+  <view class="margin-top-sm margin-bottom">
+    <text class="text-bold" decode="{{true}}"> \n &emsp;总平均学分绩点GPA<text class="text-sm">总</text>的计算公式： </text>
+    <image src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/总GPA.png" bindtap="onImg" data-id="2"></image>
+    <text class="text-bold" decode="{{true}}"> \n &emsp;式中 n 为全部考核课程门数。</text>
+    <text decode="{{true}}"> \n &emsp;注解：上述公式总分子为所有（课程的GPA×该课程的学分）之和，单门课程多次考试按照多门考试计算。比如高数(上)重修一次，则此高数（上）应该是两门分别对应两次考试。（挂科后绩点为0，所以也可以不计）。分母为所有课程的学分之和，重修一次算新增一门来计算（挂科后也会继续加学分）。所以根据公式的性质，我们可以知道，每挂科一次，总GPA的分子不变，分母变大，总GPA就会下降。当修够一定学分后（分母足够大的时候），单科成绩对总GPA影响微乎其微。</text>
+  </view>
+
+</view>
+
+<!--课程平均绩点-->
+<view hidden="{{index != 1}}">
+  <view class="text-xl magin-bottom-sm">
+    <text class="margin-top-sm margin-left" style="flex:1;" decode="{{true}}">第1次成绩：</text>
+    <input class="text-xl margin-left text-{{onecolor}}" style="flex:1;" bindinput="one" placeholder="请输入百分制成绩" confirm-type="done" type="digit"></input>
+    <text class="margin-top-sm margin-left" style="flex:1;" decode="{{true}}">第1次学分：</text>
+    <input class="text-lg margin-left text-orange" style="flex:1;" bindinput="oneg" placeholder="请输入学分" confirm-type="done" value="{{oneg}}" type="digit"></input>
+  </view>
+  <view class="text-xl">
+    <text class="margin-top-sm margin-left" style="flex:1;" decode="{{true}}">第2次成绩：</text>
+    <input class="text-xl margin-left text-{{twocolor}}" style="flex:1;" bindinput="two" placeholder="请输入百分制成绩" confirm-type="done" type="digit"></input>
+    <text class="margin-top-sm margin-left" style="flex:1;" decode="{{true}}">第2次学分：</text>
+    <input class="text-lg margin-left text-orange" style="flex:1;" bindinput="twog" placeholder="请输入学分" confirm-type="done" value="{{twog}}" type="digit"></input>
+  </view>
+  <view hidden="{{!three}}" class="text-xl">
+    <text class="margin-top-sm margin-left" style="flex:1;" decode="{{true}}">第3次成绩：</text>
+    <input class="text-xl margin-left text-{{threecolor}}" style="flex:1;" bindinput="three" placeholder="请输入百分制成绩" confirm-type="done" type="digit"></input>
+    <text class="margin-top-sm margin-left" style="flex:1;" decode="{{true}}">第3次学分：</text>
+    <input class="text-lg margin-left text-orange" style="flex:1;" bindinput="threeg" placeholder="请输入学分" confirm-type="done" value="{{threeg}}" type="digit"></input>
+  </view>
+  <view hidden="{{!four}}" class="text-xl">
+    <text class="margin-top-sm margin-left" style="flex:1;" decode="{{true}}">第4次成绩：</text>
+    <input class="text-xl margin-left text-{{fourcolor}}" style="flex:1;" bindinput="four" placeholder="请输入百分制成绩" confirm-type="done" type="digit"></input>
+    <text class="margin-top-sm margin-left" style="flex:1;" decode="{{true}}">第4次学分：</text>
+    <input class="text-lg margin-left text-orange" style="flex:1;" bindinput="fourg" placeholder="请输入学分" confirm-type="done" value="{{fourg}}" type="digit"></input>
+  </view>
+  <view class="myradio">
+    <text wx:if="{{three}}" class="cuIcon-move text-gray text-bold margin-right" style="font-size: 55rpx;" bindtap="move"></text>
+    <text wx:if="{{!four}}" class="cuIcon-add text-gray text-bold margin-left" style="font-size: 60rpx;" bindtap="add"></text>
+  </view>
+  <view class="text-xl" style="display:flex;flex-diretion:row;">
+    <text decode="{{true}}"> \n &emsp;课程平均绩点：&emsp;</text>
+    <text class="text-{{morecolor}}" decode="{{true}}"> \n &emsp;{{more}}</text>
+  </view>
+  <button class="bg-gradual-green cu-btn block round margin margin-left-xl" bindtap="moreCount">
+    <text class="text-lg">模拟计算绩点</text>
+  </button>
+  <view class="margin-top-sm  text-bold">
+    <text class="text-bold" decode="{{true}}">&emsp;（二） 课程平均学分绩点：GPA</text>
+    <text class="text-sm">i </text>
+    <text class="text-bold">(General Point Average)的计算公式： </text>
+    <image src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/课程平均GPA.png" bindtap="onImg" data-id="1"></image>
+    <text class="text-bold" decode="{{true}}"> \n &emsp;式中 Z<text class="text-sm">ij</text>
+    <text class="text-bold">是 i 课程第 j 次的学分；K </text>
+    <text class="text-sm">i</text> 为参加 i 课程的考核次数。</text>
+    <text class="text" decode="{{true}}"> \n &emsp;注解：分子为所有（单次考试GPA×学分）之和，分母为所有考试次数对应的学分之和。如高数上重修 1 次，分子则为 （第一次考试GPA × 第一次考试学分 + 重修考试GPA × 重修考试学分），分母为（第一次考试学分 + 重修考试学分）</text>
+  </view>
+</view>
+
+<!--课程单次绩点-->
+<view hidden="{{index != 2}}">
+  <view class="text-xl" style="display:flex;flex-diretion:row;">
+    <text class="margin-top-sm" decode="{{true}}">&emsp;成绩：</text>
+    <input class="text margin-top-sm" bindinput="single" placeholder="请输入百分制成绩" confirm-type="done" type="digit"></input>
+  </view>
+  <view class="text-xl" style="display:flex;flex-diretion:row;">
+    <text decode="{{true}}"> \n &emsp;课程单次绩点：&emsp;</text>
+    <text class="text-{{singlecolor}}" decode="{{true}}"> \n &emsp;{{single}}</text>
+  </view>
+  <text class="text-sm" decode="{{true}}"> \n &emsp; 计算方法如下： \n  &emsp;&emsp;1. i 课程的成绩记载方式为百分制，100分折算为5 个绩点，以此类推到60分折算为1个绩点，60分以下绩点为0； \n  &emsp;&emsp;2. i 课程的成绩记载方式为五级分制（优秀、良好、中等、及格、不及格），其绩点分别对应百分制成绩95分、85分、75分、65分、0分所折算的绩点。 \n  &emsp;&emsp;3. i 课程的成绩记载方式为两级分制（合格、不合格），其绩点分别对应百分制的80分、0分所折算的绩点。</text>
+  <image src="cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/课程单次GPA.png"></image>
+</view>
+
+<!--模拟绩点-->
+<!-- <view hidden="{{index != 3}}">
+  <text class="margin-top-sm margin-left text-xl">初始绩点：</text>
+  <input class="text-xl margin-left text-blue" bindinput="mbase" value="{{mbase}}" confirm-type="done" type="digit" bindblur="mbaseblur"></input>
+  <text class="margin-top-sm margin-left text-xl">已修学分：</text>
+  <input class="text-xl margin-left text-blue" bindinput="mbaseg" value="{{mbaseg}}" confirm-type="done" type="number"></input>
+  <text class="margin-top-sm margin-left text-xl">目标绩点：</text>
+  <input class="text-xl margin-left text-blue" bindinput="gbase" value="{{gbase}}" confirm-type="done" type="digit" bindblur="gbaseblur"></input>
+  <button class="bg-gradual-green cu-btn block round margin margin-left-xl" bindtap="goSimulation">
+    <text class="text-lg">模拟课程情况</text>
+  </button>
+  <view>
+    <text>注解：目前只支持<text>
+  </view>
+</view> -->

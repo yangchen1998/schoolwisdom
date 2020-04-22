@@ -1,0 +1,16 @@
+<template name='postiamges'>
+  <view class="cu-form-group padding-top">
+    <view class="grid col-4 grid-square flex-sub radius">
+      <view class="bg-img" wx:for="{{imgid}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgid[index]}}">
+        <image src='{{imgid[index]}}' mode='aspectFill'></image>
+        00
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="chooseimage" wx:if="{{tempFilePaths.length<9}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+</template>

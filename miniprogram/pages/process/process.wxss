@@ -1,0 +1,52 @@
+/* miniprogram/pages/process/process.wxss */
+
+.process {
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  background-color: rgb(255, 255, 255);
+}
+
+.finish_button {
+  
+  background-color: rgb(255, 255, 255)
+}
+
+.processc_view {
+  margin: 6px;
+}
+
+.processc {
+  flex: 1;
+  font-size: small;
+  line-height: 30px;
+}
+.processcc {
+  flex:1;
+  display: flex;
+  flex-direction: row;
+  font-size: small;
+  line-height: 30px;
+}
+
+.swiper {
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  background-color: rgb(255, 255, 255);
+}
+.line {
+  width: 95%;
+  height: 1.5px;
+  background-color: #e5e5e5;
+  vertical-align: middle;
+  position: relative;
+  margin-left: 0;
+  margin-right: 4px;
+  margin-top: 12px;
+}
+.button_view{
+  text-align:right;
+  margin: 6px;
+  width: 95%;
+}

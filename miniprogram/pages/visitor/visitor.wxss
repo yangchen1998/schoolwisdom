@@ -1,0 +1,3 @@
+/* miniprogram/pages/visitor/visitor.wxss */
+@import '/pages/more/more.wxss';
+@import '/template/swiper/swiper.wxss';
