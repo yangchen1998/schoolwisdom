@@ -12,9 +12,9 @@
 </view> -->
 <view view_farther>
   <text>2019-2020学年校历</text>
-  <image mode='widthFix' src='cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/2019-2020学年校历.jpg' lazy-load='ture' class='image' bindtap='tap1'>
+  <image mode='widthFix' src='cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/NEU/2019-2020学年校历.jpg' lazy-load='ture' class='image' bindtap='tap1'>
   </image>
-    <text>秋季学期校车</text>
-  <image mode='widthFix' src='cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/校车.jpg' lazy-load='ture' class='image' bindtap='tap2'>
+    <text>校车发车时间表</text>
+  <image mode='widthFix' src='cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/NEU/校车.jpg' lazy-load='ture' class='image' bindtap='tap2'>
   </image>
 </view>

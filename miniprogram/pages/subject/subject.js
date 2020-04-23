@@ -345,7 +345,7 @@ Page({
    */
   onShareAppMessage: function (ops) {
     return {
-      title: '东大Helper课程表',
+      title: '校园智多星课程表',
       path: '/pages/lostAndFound/index',
       success: function (res) {
         // 转发成功

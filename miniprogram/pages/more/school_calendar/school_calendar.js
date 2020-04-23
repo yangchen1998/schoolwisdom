@@ -65,14 +65,14 @@ Page({
   },
   tap1: function () {
     wx.previewImage({
-      current: 'cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/2019-2020学年校历.jpg',
-      urls: ['cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/2019-2020学年校历.jpg', 'cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/校车.jpg']
+      current: 'cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/NEU/2019-2020学年校历.jpg',
+      urls: ['cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/NEU/2019-2020学年校历.jpg', 'cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/NEU/校车.jpg']
     })
   },
   tap2: function () {
     wx.previewImage({
-      current: 'cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/校车.jpg',
-      urls: ['cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/2018-2019学年校历.png', 'cloud://neuhelper-1ol0o.6e65-neuhelper-1ol0o/NEU/校车.jpg']
+      current: 'cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/NEU/校车.jpg',
+      urls: ['cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/NEU/2018-2019学年校历.png', 'cloud://neuhelper-8f4v.6e65-neuhelper-8f4v/NEU/校车.jpg']
     })
   },
   onBackPage: function () {
