@@ -120,10 +120,10 @@ Page({
     var free_curriculum = new Array();
     free_curriculum = JSON.parse(a_util_curriculum);
     // console.log(free_curriculum)
-    // console.log('当前周为：' + e.currentweeks.current_week);
+    //console.log('当前周为：' )
     var current_week = e.currentweeks.current_week;
     var user_courses = user.courses;
-    // var user_courses = wx.getStorageSync('myCourses');
+   
     //下面将课程信息逐个分析
     if (user_courses) {
       var len_courses = user_courses.length
@@ -274,9 +274,9 @@ Page({
   },
   //根据周获取日期
   weekChangeDay: function (e) {
-    var date = new Date('2019/09/08 00:00:00');
+    var date = new Date('2020/02/23 00:00:00');
     var c_weeks = new Array();
-    var tempdate = new Date('2019/09/08 00:00:00');
+    var tempdate = new Date('2020/02/23 00:00:00');
     tempdate.setDate(date.getDate() + e * 7);
     console.log(tempdate)
     for (var i = 0; i < 7; i++) {
@@ -695,6 +695,12 @@ Page({
         }
       }
     }
+    var user = wx.getStorageSync('user');
+    db.collection('user').doc(user._id).update({
+      data: {
+        courses: user.courses
+      }
+    })
   },
 
   //取消课表添加时的函数
@@ -1323,5 +1329,5 @@ Page({
         break;
     }
   },
-
+  
 })
