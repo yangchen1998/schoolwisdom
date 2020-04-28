@@ -5,7 +5,10 @@
 const cloud = require('wx-server-sdk')
 
 // 初始化 cloud
-cloud.init()
+cloud.init({
+  env: "neuhelper-8f4v",
+  traceUser: true,
+})
 const db = cloud.database()
 let repair = new Array();
 let certifying = new Array();
